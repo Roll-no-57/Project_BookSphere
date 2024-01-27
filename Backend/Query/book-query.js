@@ -1,5 +1,5 @@
 const database = require('../db/db');
-
+const oracledb = require('oracledb')
 
 // function to get id from email
 async function getAllBooks(offset,limit){
@@ -16,6 +16,9 @@ async function getAllBooks(offset,limit){
     const binds = {
         offset,limit
     }
+
+    
+
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
@@ -51,7 +54,7 @@ async function getBookByID(ID){
     const binds = {
         id:ID
     }
-    return (await database.execute(sql, binds, database.options)).rows;
+    return (await database.execute(sql, binds, database.options)).rows[0];
 }
 
 async function getBookByAuthorID(ID,offset,limit){

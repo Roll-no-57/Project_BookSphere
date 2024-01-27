@@ -33,6 +33,23 @@ async function getAuthorByID(ID){
 
 
 
+
+async function getAuthorByBookID(ID){
+
+    const sql = `
+        SELECT AUTHOR.*
+        FROM BOOK JOIN AUTHOR ON BOOK.AUTHOR_ID = AUTHOR.ID
+        WHERE BOOK.ID = :id
+    `;
+
+    const binds = {
+        id: ID
+    }
+
+    return (await database.execute(sql,binds,database.options).rows);
+}
+
+
 module.exports = {
     getAllAuthors,
     getAuthorByID

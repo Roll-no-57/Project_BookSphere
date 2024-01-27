@@ -1,26 +1,34 @@
- oracledb = require('oracledb');
+oracledb = require('oracledb')
 oracledb.autoCommit = true;
+require('dotenv').config();
+
 
 
 
 // creates connection pool for oracledb
 async function startup() {
-    console.log('Starting up database module');
+    console.log('starting up database.');
     try {
+
+        //be careful all data in .env file should be in string format
         await oracledb.createPool({
             user: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
-            connectString: process.env.DB_CONNECTIONSTRING,
-            poolMax: 10,
+            connectString: process.env.DB_CONNECTSTRING,
             poolMin: 4,
+            poolMax: 10,
             poolIncrement: 1
         });
-        console.log('Database pool created................');
+
     }
     catch (err) {
-        console.log('ERROR starting up database module: ' + err.message);
+        console.log("ERROR: database connection failed ", err);
+
     }
+
+    console.log('Database Connection Pool Created...');
 }
+
 
 // closes connection pool for oracledb
 async function shutdown() {
@@ -28,42 +36,41 @@ async function shutdown() {
     try {
         // If this hangs, you may need DISABLE_OOB=ON in a sqlnet.ora file.
         await oracledb.getPool().close(10);
-        console.log('Pool closed');
-    } catch(err) {
-        console.log("ERROR shutting down database: "+err.message);
+        console.log('Connection Pool closed');
+    } catch (err) {
+        console.log("ERROR shutting down database: " + err.message);
     }
 }
 
 // code to execute sql
-async function execute(sql, binds, options){
+async function execute(sql, binds, options) {
     let connection, results;
     try {
-        // Get a connection from the default pool
-        connection = await oracledb.getConnection({
-            user: 'C##APURBO',
-            password: 'BUET2105057',
-            connectString: 'localhost/orcl'
-        });
+
+        connection = await oracledb.getConnection();
         results = await connection.execute(sql, binds, options);
     } catch (err) {
-        console.log("ERROR executing sql: " + err.message);
+        console.log("database connection failed");
+        console.log("\n\nERROR executing sql: \n" + err.message + '\n\n');
+        console.log('The provided SQL was \n' + sql)
+        throw err;
     } finally {
         if (connection) {
             try {
                 // Put the connection back in the pool
+                console.log("closing connection");
                 await connection.close();
             } catch (err) {
                 console.log("ERROR closing connection: " + err);
             }
         }
     }
+    //console.log(results)
     return results;
 }
 
-
-
-// Function to execute many queries
-async function executeMany(sql, binds, options){
+// code to execute many sql
+async function executeMany(sql, binds, options) {
     let connection;
     try {
         // Get a connection from the default pool
@@ -87,18 +94,15 @@ async function executeMany(sql, binds, options){
 }
 
 
-
-//execute options
+// options for execution sql
 const options = {
     outFormat: oracledb.OUT_FORMAT_OBJECT
-
 }
 
-//export modules
 module.exports = {
     startup,
     shutdown,
     execute,
     executeMany,
     options
-}
+};

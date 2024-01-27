@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
             // totalPages: Math.ceil(booksCount / limits),
         }
         res.json(result);
+        console.log(req.headers+"\n"+req.body+"\n"+req.params+"\n"+req.query+"\n"+req.url+"\n"+req.method);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -60,6 +61,13 @@ router.get('/:bookID', async (req, res) =>{
     res.json(resResult);
 
 });
+
+
+router.delete('/:bookID', async (req,res) =>{
+    const result = await DB_book.deleteBook(req.params.bookID);
+    res.json(result);
+});
+
 
 
 
