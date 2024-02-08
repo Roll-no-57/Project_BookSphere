@@ -5,6 +5,7 @@ import MultiCarousel from '../Components/Multicarousel';
 import Card from '../Components/Card';
 import CategoryCard from '../Components/CategoryCard';
 import AuthorCard from '../Components/AuthorCard';
+import Footer from '../Components/Footer';
 
 
 const Home = () => {
@@ -75,6 +76,8 @@ const Home = () => {
       </div>
 
       <MultiCarousel component={AuthorCard} products={authors}/>
+      <Footer />
+
 
 
     </div>

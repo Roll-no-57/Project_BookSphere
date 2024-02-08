@@ -36,7 +36,7 @@ app.use(
 
 
 //Link routes to routers
-app.use('/api/v1/books',BookRouter); //
+app.use('/api/v1/books',BookRouter);
 app.use('/api/v1/authors',AuthorRouter);
 app.use('/api/v1/admin',AdminRouter);
 
