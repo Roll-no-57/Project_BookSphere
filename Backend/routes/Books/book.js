@@ -46,7 +46,7 @@ router.get('/:bookID', async (req, res) =>{
     if( booksResult.length === 0 )
         return res.redirect('/');
 
-    // const canReview = await DB_review.hasBookOrdered(req.user.id,req.params.bookID);
+    const canReview = await DB_review.hasBookOrdered(req.user.id,req.params.bookID);
     // let hasReviewd = await DB_review.hasReviewdBook(req.user.id,req.params.bookID);
     // let addedToWishList = await DB_wish.hasAdded(req.user.id,req.params.bookID);
     // let reviews = await DB_review.getAllReviewsByBook(req.params.bookID);
@@ -69,7 +69,7 @@ router.delete('/:bookID', async (req,res) =>{
 });
 
 
-
+ 
 
 
 module.exports = router;

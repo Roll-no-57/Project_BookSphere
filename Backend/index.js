@@ -43,7 +43,6 @@ app.use('/api/v1/admin',AdminRouter);
 
 
 //Setting up the connection
-
 const port = process.env.PORT || 3000;  //setting up the port
 app.listen(port, console.log(`Server is running on port ${port} . Link : http://localhost:${port}`));
 

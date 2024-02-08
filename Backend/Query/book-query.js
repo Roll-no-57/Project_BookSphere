@@ -184,6 +184,7 @@ async function editBook(id,image,page,year,price,edition,stock,genre){
     await database.execute(sql, binds, database.options);
     return ;
 }
+
 async function addBook(name,author_id,pub_id,image,language,isbn,page,year,price,edition,stock,genre){
     const sql = `
         INSERT INTO book(author_id,publisher_id,publishing_year,price,language,image,name,isbn,page,edition,stock,genre)

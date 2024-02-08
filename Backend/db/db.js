@@ -1,8 +1,5 @@
 oracledb = require('oracledb')
 oracledb.autoCommit = true;
-require('dotenv').config();
-
-
 
 
 // creates connection pool for oracledb
