@@ -1,10 +1,11 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import  './Multicarousel.css';
 
 
 function MultiCarousel(props) {
-    const { products, component: Component } = props;
+    const { products, component: Component ,headLines :headLine} = props;
 
     const responsive = {
         superLargeDesktop: {
@@ -26,22 +27,29 @@ function MultiCarousel(props) {
     };
 
     return (
-        <div className="multi-carousel" style={{ marginLeft: '100px', marginRight: '100px', marginBottom: '70px' }}>
-            <div>
-                <Carousel
-                    responsive={responsive}
-                    autoPlay={true}
-                    autoPlaySpeed={2000}
-                    keyBoardControl={true}
-                    customTransition="transform 500ms ease-in-out"
-                    transitionDuration={500}
-                    infinite={true}
+        <div className='carousel-container' >
+            <div style={{ textAlign: 'center', margin: '20px 0', marginBottom: '30px' }}>
+                <h2>{headLine}</h2>
+                <hr style={{ width: '50%', borderTop: '2px solid black', margin: 'auto' }} />
+            </div>
+
+            <div className="multi-carousel" style={{ marginLeft: '100px', marginRight: '100px', marginBottom: '70px' }}>
+                <div>
+                    <Carousel
+                        responsive={responsive}
+                        autoPlay={true}
+                        autoPlaySpeed={2000}
+                        keyBoardControl={true}
+                        customTransition="transform 500ms ease-in-out"
+                        transitionDuration={500}
+                        infinite={true}
                     // centerMode={true}
-                >
-                    {products.map(product => (
-                        <Component key={product.id} {...product} />
-                    ))}
-                </Carousel>
+                    >
+                        {products.map(product => (
+                            <Component key={product.id} {...product} />
+                        ))}
+                    </Carousel>
+                </div>
             </div>
         </div>
     );

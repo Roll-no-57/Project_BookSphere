@@ -6,6 +6,7 @@ import Card from '../Components/Card';
 import CategoryCard from '../Components/CategoryCard';
 import AuthorCard from '../Components/AuthorCard';
 import Footer from '../Components/Footer';
+import BookPage from '../Components/BookPage';
 
 
 const Home = () => {
@@ -45,38 +46,24 @@ const Home = () => {
 
   return (
     <div>
-      <CustomNavbar />
+      {/* <CustomNavbar />
 
       <Customcarousel />
 
-      {/* Best Seller Header with Horizontal Line */}
-      <div style={{ textAlign: 'center', margin: '20px 0', marginBottom: '30px' }}>
-        <h2>Best Sellers</h2>
-        <hr style={{ width: '50%', borderTop: '2px solid black', margin: 'auto' }} />
-      </div>
+      <MultiCarousel component={Card} products={products} headLines={"Best Sellers"}/>
 
-      <MultiCarousel component={Card} products={products} />
+      
+      <MultiCarousel component={CategoryCard} products={CategoriesItems} headLines={"Categories"}/>
 
-      <div style={{ textAlign: 'center', margin: '30px 0' }}>
-        <h2>Category</h2>
-        <hr style={{ width: '50%', borderTop: '2px solid black', margin: 'auto' }} />
-      </div>
-      <MultiCarousel component={CategoryCard} products={CategoriesItems} />
+      
+      <MultiCarousel component={Card} products={products} headLines={"Popular Products"}/>
 
-      <div style={{ textAlign: 'center', margin: '30px 0' }}>
-        <h2>Popular Products</h2>
-        <hr style={{ width: '50%', borderTop: '2px solid black', margin: 'auto' }} />
-      </div>
 
-      <MultiCarousel component={Card} products={products} />
+      <MultiCarousel component={AuthorCard} products={authors} headLines={"Authors"}/>
+      <Footer /> */}
 
-      <div style={{ textAlign: 'center', margin: '30px 0' }}>
-        <h2>Best Seller Author</h2>
-        <hr style={{ width: '50%', borderTop: '2px solid black', margin: 'auto' }} />
-      </div>
 
-      <MultiCarousel component={AuthorCard} products={authors}/>
-      <Footer />
+      <BookPage />
 
 
 

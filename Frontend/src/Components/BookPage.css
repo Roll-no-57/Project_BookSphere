@@ -1,0 +1,62 @@
+.book-detail-container {
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(72, 70, 70, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1), 0px -5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    padding-left: 50px;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    transition: box-shadow 0.5s ease;
+
+    /*desplay flexx*/
+    
+    /* display: flex; */
+}
+
+.book-detail-container:hover {
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2), -8px -8px 15px rgba(0, 0, 0, 0.2), 0px -8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.book-Specification-container {
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(72, 70, 70, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1), 0px -5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    padding-left: 50px;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    transition: box-shadow 0.5s ease;
+
+    /*desplay flexx*/
+    
+    /* display: flex; */
+}
+
+.book-Specification-container:hover {
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2), -8px -8px 15px rgba(0, 0, 0, 0.2), 0px -8px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.book-review-container {
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(72, 70, 70, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1), 0px -5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    padding-left: 50px;
+    margin-left: 90px;
+    margin-right: 90px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    transition: box-shadow 0.5s ease;
+
+    /*desplay flexx*/
+    
+    /* display: flex; */
+}
+
+.book-review-container:hover {
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2), -8px -8px 15px rgba(0, 0, 0, 0.2), 0px -8px 15px rgba(0, 0, 0, 0.2);
+}
+
+

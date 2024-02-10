@@ -1,4 +1,3 @@
-import Stack from 'react-bootstrap/Stack';
 import Home from './Pages/Home';
 
 function App() {

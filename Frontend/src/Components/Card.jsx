@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './Card.css'; // Import CSS file
 
 
 function CustomCard(props) {
-  const [isHovered, setIsHovered] = useState(false);
+  
 
   return (
     <div className={`card-container `}>
-      <Card className="custom-card" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+      <Card className="custom-card" >
         <Card.Img style={{ marginBottom: '-22px' }} variant="top" src={props.image} />
         <Card.Body className="text-center">
           <Card.Header style={{ marginBottom: '6px', fontWeight: 'bold' }}>{props.name}</Card.Header>

@@ -1,12 +1,11 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import Button from 'react-bootstrap/Button';
 import './CustomCarousel.css';
 
 function Customcarousel() {
     return (
-        <div className="d-flex justify-content-center mt-3" >
-            <Carousel className="custom-carousel" style={{ height: "500px", width: "1350px" ,borderRadius: "10px"}}>
+        <div className="d-flex justify-content-center mt-3 " >
+            <Carousel className="custom-carousel" style={{ height: "500px", width: "1350px" ,borderRadius: "10px" ,marginTop:'40px'}}>
 
                 <Carousel.Item interval={1000}>
                     <img
