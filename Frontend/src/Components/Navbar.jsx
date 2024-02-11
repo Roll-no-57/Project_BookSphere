@@ -4,23 +4,28 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 // import { RiShoppingCart2Line } from "react-icons/ri";
 import { RiShoppingCart2Line, RiHeartLine, RiUserLine } from "react-icons/ri";
 
 
 const CustomNavbar = () => {
+
+    
+
+
     return (
         <div >
             <Navbar expand="lg" className="bg-body-tertiary shadow-lg pt-50  " >
                 <Container>
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand as={Link} to="/" >
                         <img
                             src="/images/logo.png"
                             alt="Logo"
                             height="30"
                             className="d-inline-block align-top"
                         />{'  '}
-                        React-Bootstrap
+                        BookSphere
                     </Navbar.Brand>
                     {/* Rest of the Navbar content */}
 
@@ -28,8 +33,8 @@ const CustomNavbar = () => {
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="">
 
-                            <Nav.Link href="#books" className="me-4">Books</Nav.Link>
-                            <Nav.Link href="#home" className="me-4">Authors</Nav.Link>
+                            <Nav.Link as={Link} to="/book" className="me-4">Books</Nav.Link>
+                            <Nav.Link href="/author" className="me-4">Authors</Nav.Link>
                             <Nav.Link href="#link" className="me-4">Publisher</Nav.Link>
                             <Nav.Link href="#AboutUs" className="me-4">About us</Nav.Link>
 

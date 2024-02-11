@@ -6,6 +6,7 @@ import { RiHeartLine, RiHeartFill } from "react-icons/ri";
 import { taka } from '../Pages/Constants';
 import Services from './services';
 import AuthorDetail from './AuthorDetail';
+import { FaStar } from 'react-icons/fa';
 
 
 
@@ -23,12 +24,41 @@ import Review from './Review';
 
 {/*import staement for the specification catefory */ }
 
+const demoData = [
+  {
+    reviewer: 'Apurbo Hossain',
+    review: '"The Great Gatsby" by F. Scott Fitzgerald is a quintessential American novel that delves into the complexities of the human experience. Set in the roaring 1920s, Fitzgerald paints a vivid picture of the Jazz Age, where wealth, excess, and societal decadence reign supreme. At the heart of the story is Jay Gatsby, a mysterious and enigmatic figure whose pursuit of the American Dream leads him down a path of obsession and tragedy. Through its richly drawn characters and evocative prose, the novel explores timeless themes of love, identity, and the illusion of the American Dream, making it a literary masterpiece that continues to resonate with readers today.',
+    rating: 5,
+    date: '2021-08-20',
+    image: 'https://bit.ly/dan-abramov',
+
+  },
+  {
+    reviewer: 'Apurbo Hossain',
+    review: '"The Great Gatsby" by F. Scott Fitzgerald is a quintessential American novel that delves into the complexities of the human experience. Set in the roaring 1920s, Fitzgerald paints a vivid picture of the Jazz Age, where wealth, excess, and societal decadence reign supreme. At the heart of the story is Jay Gatsby, a mysterious and enigmatic figure whose pursuit of the American Dream leads him down a path of obsession and tragedy. Through its richly drawn characters and evocative prose, the novel explores timeless themes of love, identity, and the illusion of the American Dream, making it a literary masterpiece that continues to resonate with readers today.',
+    rating: 3,
+    date: '2021-08-20',
+    image: 'https://bit.ly/dan-abramov',
+  },
+  {
+    reviewer: 'Apurbo Hossain',
+    review: '"The Great Gatsby" by F. Scott Fitzgerald is a quintessential American novel that delves into the complexities of the human experience. Set in the roaring 1920s, Fitzgerald paints a vivid picture of the Jazz Age, where wealth, excess, and societal decadence reign supreme. At the heart of the story is Jay Gatsby, a mysterious and enigmatic figure whose pursuit of the American Dream leads him down a path of obsession and tragedy. Through its richly drawn characters and evocative prose, the novel explores timeless themes of love, identity, and the illusion of the American Dream, making it a literary masterpiece that continues to resonate with readers today.',
+    rating: 1,
+    date: '2021-08-20',
+    image: 'https://bit.ly/dan-abramov',
+  },
+  {
+    reviewer: 'Apurbo Hossain',
+    review: '"The Great Gatsby" by F. Scott Fitzgerald is a quintessential American novel that delves into the complexities of the human experience. Set in the roaring 1920s, Fitzgerald paints a vivid picture of the Jazz Age, where wealth, excess, and societal decadence reign supreme. At the heart of the story is Jay Gatsby, a mysterious and enigmatic figure whose pursuit of the American Dream leads him down a path of obsession and tragedy. Through its richly drawn characters and evocative prose, the novel explores timeless themes of love, identity, and the illusion of the American Dream, making it a literary masterpiece that continues to resonate with readers today.',
+    rating: 3,
+    date: '2021-08-20',
+    image: 'https://bit.ly/dan-abramov',
+  }
+
+]
 
 
-
-
-
-const BookPage = ({ title, author, category, price }) => {
+const BookPage = ({ title, author, category, price, total_rating = 5, total_review = 2 }) => {
   const [isAddedToWishlist, setIsAddedToWishlist] = React.useState(false);
 
   const handleAddToWishlist = () => {
@@ -143,7 +173,7 @@ const BookPage = ({ title, author, category, price }) => {
 
             </Tab>
             <Tab eventKey="contact" title="Author" >
-               <AuthorDetail />
+              <AuthorDetail />
             </Tab>
           </Tabs>
         </Container>
@@ -153,8 +183,45 @@ const BookPage = ({ title, author, category, price }) => {
 
       {/* product review */}
       <div className='book-review-container'>
-          <Review/>
-        </div>
+        {/* <Review /> */}
+        <h3 style={{ marginBottom: '20px' }}>Ratings and Reviews</h3>
+        <hr></hr>
+        <h5 style={{ marginBottom: '20px' }}> {total_rating} Ratings and {total_review} Reviews</h5>
+        <p>Rate this Book</p>
+        <Review />
+
+        {
+          demoData.map((data, index) => {
+            return (
+              <div key={index}>
+                <hr />
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img src={data.image} alt='reviewer' style={{ borderRadius: '10px',height:'100px',width:'100px', marginRight: '50px' }} />
+                  <div>
+                    <h5> by- <strong>{data.reviewer}</strong></h5>
+                    <p>{data.date}</p>
+                    {/* Render the rating, date, or any other information here */}
+                    <div>
+                      {[...Array(data.rating)].map((_, i) => (
+                        <FaStar
+                          key={i}
+                          style={{ marginRight: 10 }}
+                          color='#FFBA5A'
+                          size={24}
+                        />
+                      ))}
+                    </div>
+                    <div>{data.review}</div>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        }
+
+
+
+      </div>
 
     </div>
   );

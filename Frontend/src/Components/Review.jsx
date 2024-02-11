@@ -21,9 +21,21 @@ const styles = {
 
 function Review() {
     const [show, setShow] = useState(false);
+    const [review, setReview] = useState('Write a review');
+    const [variant, setVariant] = useState('primary');
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const handleSave = () => {
+        console.log('Save');
+        setReview('Edit Review');
+        setVariant('warning');
+        handleClose();
+    }
+
+
+
+
 
     {/*Handling the rating start functions*/ }
     const [currentValue, setCurrentValue] = useState(0);
@@ -44,8 +56,8 @@ function Review() {
 
     return (
         <>
-            <Button variant="secondary" onClick={handleShow}>
-                Write a Review
+            <Button variant={variant} onClick={handleShow}>
+                {review}
             </Button>
 
             <Modal show={show} onHide={handleClose}>
@@ -90,7 +102,7 @@ function Review() {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={handleSave}>
                         Save Changes
                     </Button>
                 </Modal.Footer>

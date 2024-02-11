@@ -10,16 +10,18 @@ function Footer() {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 col-lg-5 col-12 ft-1">
-                            <h3><span>Book</span>Sphere</h3>
+                            <div>
+                                <h3><span>Book</span>Sphere</h3>
+                            </div>
                             <p>Your online destination for all things books. Browse our extensive collection of titles, spanning genres and interests. From bestsellers to hidden gems, discover your next favorite read. With user-friendly features and personalized recommendations, finding the perfect book has never been easier. Join us and explore the world of literature today!</p>
                             <div className="footer-icons">
-                                <a href="https://www.facebook.com"><FaFacebook size={32} style={{marginRight:'20px'}}/></a>
-                                <a href="https://twitter.com"><FaTwitter size={32} style={{marginRight:'20px'}}/></a>
-                                <a href="https://www.instagram.com"><FaInstagram size={32} style={{marginRight:'20px'}}/></a>
-                                <a href="https://www.linkedin.com"><FaLinkedinIn size={32} style={{marginRight:'20px'}}/></a>
+                                <a href="https://www.facebook.com"><FaFacebook size={32} style={{ marginRight: '20px' }} /></a>
+                                <a href="https://twitter.com"><FaTwitter size={32} style={{ marginRight: '20px' }} /></a>
+                                <a href="https://www.instagram.com"><FaInstagram size={32} style={{ marginRight: '20px' }} /></a>
+                                <a href="https://www.linkedin.com"><FaLinkedinIn size={32} style={{ marginRight: '20px' }} /></a>
                             </div>
                         </div>
-                        
+
                         <div className="col-md-6 col-lg-3 col-12 ft-2">
                             <h5>Quick Links</h5>
                             <p><i class="fa-solid fa-phone-volume"></i>+8801711127583</p>

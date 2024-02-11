@@ -46,7 +46,7 @@ const Home = () => {
 
   return (
     <div>
-      {/* <CustomNavbar />
+      <CustomNavbar />
 
       <Customcarousel />
 
@@ -60,10 +60,10 @@ const Home = () => {
 
 
       <MultiCarousel component={AuthorCard} products={authors} headLines={"Authors"}/>
-      <Footer /> */}
+      <Footer />
 
 
-      <BookPage />
+      {/* <BookPage /> */}
 
 
 
