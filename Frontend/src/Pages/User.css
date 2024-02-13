@@ -1,0 +1,57 @@
+.user-profile {
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(72, 70, 70, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1), 0px -5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 30px;
+    transition: box-shadow 0.5s ease;
+}
+
+.user-profile:hover {
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2), -8px -8px 15px rgba(0, 0, 0, 0.2), 0px -8px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.user-activity {
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(72, 70, 70, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1), 0px -5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: box-shadow 0.5s ease;
+
+}
+
+.user-info:hover {
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2), -8px -8px 15px rgba(0, 0, 0, 0.2), 0px -8px 15px rgba(0, 0, 0, 0.2);
+}
+.user-info {
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(72, 70, 70, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1), 0px -5px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    transition: box-shadow 0.5s ease;
+
+}
+
+.user-activity:hover {
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2), -8px -8px 15px rgba(0, 0, 0, 0.2), 0px -8px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.user-Actions {
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(72, 70, 70, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1), 0px -5px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-top: 30px;
+    padding: 20px;
+    transition: box-shadow 0.5s ease;
+
+}
+
+.user-Actions:hover {
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.2), -8px -8px 15px rgba(0, 0, 0, 0.2), 0px -8px 15px rgba(0, 0, 0, 0.2);
+}
