@@ -5,7 +5,7 @@ import  './Multicarousel.css';
 
 
 function MultiCarousel(props) {
-    const { products, component: Component ,headLines :headLine} = props;
+    const { products, component: Component ,headLines :headLine,link} = props;
 
     const responsive = {
         superLargeDesktop: {
@@ -46,7 +46,7 @@ function MultiCarousel(props) {
                     // centerMode={true}
                     >
                         {products.map(product => (
-                            <Component key={product.id} {...product} />
+                            <Component link={link} key={product.id} {...product} />
                         ))}
                     </Carousel>
                 </div>

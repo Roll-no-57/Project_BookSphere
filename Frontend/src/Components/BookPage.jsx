@@ -57,6 +57,13 @@ const demoData = [
 
 ]
 
+const authorDetailInfo = {
+  name : "Apurbo",
+  image: "https://bit.ly/dan-abramov",
+  followers: 1.1,
+  description : "As an individual, you are a curious and ambitious learner, always eager to explore new ideas and acquire knowledge. Your passion for continuous growth drives you to seek out challenges and opportunities for personal and professional development. With a keen eye for detail and a systematic approach to problem-solving, you excel in analyzing complex concepts and finding innovative solutions. Your strong communication skills enable you to effectively articulate your thoughts and ideas, fostering meaningful connections with others. As a team player, you thrive in collaborative environments, valuing diversity and respecting different perspectives. Your adaptability and resilience empower you to navigate through various situations with grace and determination. Committed to making a positive impact, you are driven by a sense of purpose and strive to contribute to the betterment of your community and the world at large. In essence, you are a dynamic and multifaceted individual, motivated by a relentless pursuit of growth, excellence, and meaningful connections."
+}
+
 
 const BookPage = ({ title, author, category, price, total_rating = 5, total_review = 2 }) => {
   const [isAddedToWishlist, setIsAddedToWishlist] = React.useState(false);
@@ -124,7 +131,7 @@ const BookPage = ({ title, author, category, price, total_rating = 5, total_revi
             onSelect={(k) => setKey(k)}
             className="mb-3"
           >
-            <Tab eventKey="home" title="Summary">
+            <Tab eventKey="home" title="Summary" style={{padding:'25px'}}>
               Harry Potter and the Philosopher's Stone," the first book in J.K. Rowling's iconic series, follows the story of Harry Potter, a young boy who discovers he is a wizard on his eleventh birthday. Living with his neglectful aunt, uncle, and cousin after the death of his parents, Harry learns that he is famous in the wizarding world for surviving an attack by the dark wizard Voldemort as an infant, which left him with a lightning-shaped scar on his forehead.
 
               As Harry begins his first year at Hogwarts School of Witchcraft and Wizardry, he makes friends with Ron Weasley and Hermione Granger, and together they uncover a mystery surrounding a magical object hidden within the school. Along the way, Harry discovers his own magical abilities and begins to learn about his past, including the truth about his parents' deaths.
@@ -173,7 +180,7 @@ const BookPage = ({ title, author, category, price, total_rating = 5, total_revi
 
             </Tab>
             <Tab eventKey="contact" title="Author" >
-              <AuthorDetail />
+              <AuthorDetail {...authorDetailInfo}/>
             </Tab>
           </Tabs>
         </Container>

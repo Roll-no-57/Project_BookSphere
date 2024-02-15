@@ -26,8 +26,11 @@ router.get('/', async (req, res) => {
             currentPage: offsetPage,
             // totalPages: Math.ceil(booksCount / limits),
         }
+        console.log(result);
+        // res.json("what the fuck ");
         res.json(result);
         console.log(req.headers+"\n"+req.body+"\n"+req.params+"\n"+req.query+"\n"+req.url+"\n"+req.method);
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });

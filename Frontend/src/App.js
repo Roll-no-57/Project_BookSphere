@@ -1,10 +1,21 @@
 import Home from './Pages/Home';
 import BookDetail from './Pages/BookDetail';
-import { BrowserRouter ,Routes ,Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import AllBooks from './Pages/AllBooks';
+import AllAuthors from './Pages/AllAuthors';
+import AllCategories from './Pages/AllCategories';
 import AuthorDetailPage from './Pages/AuthorDetailPage';
-import AllBookCard from './Components/AllBookCard';
+import AllPublishers from './Pages/AllPublisher';
+import PublisherDetailPage from './Pages/PublisherDetailPage';
+import User from './Pages/User';
+import wishlist from './Pages/WishList';
+import orders from './Pages/Orders';
+import reviews from './Pages/Reviews';
+// import MyCart from './Pages/MyCart';
+// import CategoryDetailPage from './Pages/CategoryDetailPage';
+// import Trackorders from './Pages/Trackorders';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -15,11 +26,10 @@ function ScrollToTop() {
   return null;
 }
 
+
 function App() {
   return (
     <>
-
-
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
@@ -27,10 +37,25 @@ function App() {
           <Route path='' Component={Home} />
           <Route path='/' Component={Home} />
 
-          <Route path='/book' Component={AllBookCard} />
+          <Route path='/book' Component={AllBooks} />
           <Route path='/book/:id' Component={BookDetail} />
 
-          <Route path='/author' Component={AuthorDetailPage} />
+          <Route path='/author' Component={AllAuthors} />
+          <Route path='/author/:id' Component={AuthorDetailPage} />
+
+          <Route path='/category' Component={AllCategories} />
+          {/* <Route path='/category/:id' Component={CategoryDetailPage}/> */}
+
+          <Route path='/publisher' Component={AllPublishers} />
+          <Route path='/publisher/:id' Component={PublisherDetailPage} />
+
+          <Route path='/my-section/profile' Component={User} />
+          <Route path='/my-section/orders' Component={orders} />
+          <Route path='/my-section/wishlist' Component={wishlist} />
+          <Route path='/my-section/reviews' Component={reviews} />
+          {/* <Route path='/my-section/cart' Component={MyCart}/> */}
+          {/* <Route path='/my-section/track-order' Component={Trackorders}/> */}
+
 
         </Routes>
       </BrowserRouter>

@@ -3,7 +3,7 @@ import FloatingDivWrapper from './FloatingDivWrapper';
 import Pagination from 'react-bootstrap/Pagination';
 
 const AllCard = (props) => {
-    const { product, component: CustomCard,headlines ,headTitle} = props;
+    const { product,link, component: CustomCard,headlines ,headTitle,} = props;
 
     const [currentPage, setCurrentPage] = useState(1);
     const productPerPage = 20; // Change to 5 to display 5 books per row
@@ -21,6 +21,7 @@ const AllCard = (props) => {
             const row = currentproducts.slice(i, i + productPerPage).map((currproduct, index) => (
                 <div className="col-md-3" key={index}>
                     <CustomCard
+                        link={link}
                         key={currproduct.id}
                         {...currproduct}
                     />

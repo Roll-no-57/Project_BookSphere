@@ -22,10 +22,10 @@ const AllAuthors = () => {
   return (
     <div>
       <CustomNavbar />
-      <AllCard product={authors} component={AuthorCard} headlines={headlines} headTitle={'সকল লেখক'}/>
+      <AllCard product={authors} link={'author'} component={AuthorCard} headlines={headlines} headTitle={'সকল লেখক'}/>
       <Footer />
     </div>
   )
 }
 
-export default AllAuthors
+export default AllAuthors;

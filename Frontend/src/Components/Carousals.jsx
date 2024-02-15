@@ -3,11 +3,14 @@ import Carousel from 'react-bootstrap/Carousel';
 import './CustomCarousel.css';
 
 function Customcarousel() {
+
+    const interval = 1000000000;
+
     return (
         <div className="d-flex justify-content-center mt-3 " >
             <Carousel className="custom-carousel" style={{ height: "500px", width: "1350px" ,borderRadius: "10px" ,marginTop:'40px'}}>
 
-                <Carousel.Item interval={1000}>
+                <Carousel.Item interval={interval}>
                     <img
                         className="d-block w-100"
                         src="/images/carousel.png"
@@ -19,7 +22,7 @@ function Customcarousel() {
                 </Carousel.Item>
 
 
-                <Carousel.Item interval={1000}>
+                <Carousel.Item interval={interval}>
                     <img
                         className="d-block w-100"
                         src="/images/carousel.png"
@@ -33,7 +36,7 @@ function Customcarousel() {
                 </Carousel.Item>
 
 
-                <Carousel.Item interval={1000}>
+                <Carousel.Item interval={interval}>
                     <img
                         className="d-block w-100"
                         src="/images/carousel2.png"

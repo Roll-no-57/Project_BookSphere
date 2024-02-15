@@ -11,9 +11,11 @@ function Footer() {
                     <div className="row">
                         <div className="col-md-6 col-lg-5 col-12 ft-1">
                             <div>
-                                <h3><span>Book</span>Sphere</h3>
+                                <h5>BookSphere</h5>
                             </div>
-                            <p>Your online destination for all things books. Browse our extensive collection of titles, spanning genres and interests. From bestsellers to hidden gems, discover your next favorite read. With user-friendly features and personalized recommendations, finding the perfect book has never been easier. Join us and explore the world of literature today!</p>
+                            <div style={{padding:'20px'}}>
+                                <h6>Your online destination for all things books. Browse our extensive collection of titles, spanning genres and interests. From bestsellers to hidden gems, discover your next favorite read. With user-friendly features and personalized recommendations, finding the perfect book has never been easier. Join us and explore the world of literature today!</h6>
+                            </div>
                             <div className="footer-icons">
                                 <a href="https://www.facebook.com"><FaFacebook size={32} style={{ marginRight: '20px' }} /></a>
                                 <a href="https://twitter.com"><FaTwitter size={32} style={{ marginRight: '20px' }} /></a>
