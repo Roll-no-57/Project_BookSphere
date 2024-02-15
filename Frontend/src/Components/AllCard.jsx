@@ -22,7 +22,7 @@ const AllCard = (props) => {
                 <div className="col-md-3" key={index}>
                     <CustomCard
                         link={link}
-                        key={currproduct.id}
+                        key={currproduct.ID}
                         {...currproduct}
                     />
                 </div>

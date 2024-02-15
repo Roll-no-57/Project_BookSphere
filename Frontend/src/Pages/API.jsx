@@ -106,3 +106,9 @@ export async function getBooks(filter){
   const j = await getX('books', filter);
   return j;
 }
+
+
+export async function getBookByID(id,filter){
+  const j = await getX(`books/${id}`,{});
+  return j;
+}

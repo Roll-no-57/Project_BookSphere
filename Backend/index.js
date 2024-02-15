@@ -2,7 +2,6 @@
 
 // Importing the required modules
 const express = require('express');
-const router = express.Router();
 const morgan = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
@@ -14,9 +13,12 @@ db.startup();
 
 
 // Routes
-const BookRouter = require('./routes/Books/book');
-const AuthorRouter = require('./routes/Author/author');
-const AdminRouter = require('./routes/Admin/admin-books');
+const BookRouter = require('./routes/book');
+const ReviewRouter = require('./routes/review');
+const authorRouter = require('./routes/author');
+
+
+
 
 //declare and configure the app
 const app = express() 
@@ -37,9 +39,8 @@ app.use(
 
 //Link routes to routers
 app.use('/api/v1/books',BookRouter);
-app.use('/api/v1/authors',AuthorRouter);
-// app.use('/api/v1/admin',AdminRouter);
-
+app.use('/api/v1/reviews',ReviewRouter);
+app.use('/api/v1/authors',authorRouter);
 
 
 //Setting up the connection

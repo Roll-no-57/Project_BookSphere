@@ -7,6 +7,9 @@ import { taka } from '../Pages/Constants';
 import Services from './services';
 import AuthorDetail from './AuthorDetail';
 import { FaStar } from 'react-icons/fa';
+import { getParam } from '../Pages/Utils';
+import { getBookByID } from '../Pages/API';
+import { useEffect } from 'react';
 
 
 
@@ -21,6 +24,7 @@ import Table from 'react-bootstrap/Table';
 
 
 import Review from './Review';
+import Footer from './Footer';
 
 {/*import staement for the specification catefory */ }
 
@@ -57,15 +61,45 @@ const demoData = [
 
 ]
 
-const authorDetailInfo = {
-  name : "Apurbo",
-  image: "https://bit.ly/dan-abramov",
-  followers: 1.1,
-  description : "As an individual, you are a curious and ambitious learner, always eager to explore new ideas and acquire knowledge. Your passion for continuous growth drives you to seek out challenges and opportunities for personal and professional development. With a keen eye for detail and a systematic approach to problem-solving, you excel in analyzing complex concepts and finding innovative solutions. Your strong communication skills enable you to effectively articulate your thoughts and ideas, fostering meaningful connections with others. As a team player, you thrive in collaborative environments, valuing diversity and respecting different perspectives. Your adaptability and resilience empower you to navigate through various situations with grace and determination. Committed to making a positive impact, you are driven by a sense of purpose and strive to contribute to the betterment of your community and the world at large. In essence, you are a dynamic and multifaceted individual, motivated by a relentless pursuit of growth, excellence, and meaningful connections."
-}
 
 
-const BookPage = ({ title, author, category, price, total_rating = 5, total_review = 2 }) => {
+const BookPage = () => {
+  
+  
+  // retriving data for a single book from the database
+  const bookID = getParam(); // get the book id from the URL using the getParam function
+  
+  const [book, setBook] = useState([]);
+  
+  const fetchBooks = async () => {
+    try {
+      const response = await getBookByID(bookID, {});
+      setBook(response.book);
+    } catch (error) {
+      console.error('Error fetching books:', error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchBooks();
+  }, []);
+  
+  
+  const authorDetailInfo = {
+    name: book.AUTHOR_NAME,
+    image: book.AUTHOR_IMAGE,
+    followers: 1.1,
+    description: book.AUTHOR_DESCRIPTION,
+  }
+  
+  
+  
+  
+
+
+
+  const total_rating = 5;
+  const total_review = 5;
   const [isAddedToWishlist, setIsAddedToWishlist] = React.useState(false);
 
   const handleAddToWishlist = () => {
@@ -84,17 +118,18 @@ const BookPage = ({ title, author, category, price, total_rating = 5, total_revi
             {/* Image column */}
             <Col md={3} style={{ padding: '20px' }} className="d-flex flex-column">
               <div className='book-image'>
-                <img src='/images/book1.jpg' alt='book' style={{ borderRadius: '10px' }} />
+                <img src={book.IMAGE} alt='book' style={{ borderRadius: '10px', width: '260px', height: '372px' }} />
               </div>
             </Col>
 
             {/* Book details column */}
             <Col style={{ padding: '30px' }} md={6} className="d-flex flex-column">
               <div className='book-details'>
-                <h2>ভাদুড়ি সমগ্র -১ম (হার্ডকভার)</h2>
-                <h3 style={{ marginTop: '40px' }}>by - <a href="#">নীরেন্দ্রনাথ চক্রবর্তী </a></h3>
-                <p style={{ marginTop: '40px' }}>Category: <a href="#">পশ্চিমবঙ্গের বই: রহস্য, গোয়েন্দা, ভৌতিক, থ্রিলার ও অ্যাডভেঞ্চার </a></p>
-                <h5 style={{ marginTop: '40px' }}>Price: {taka} 200</h5>
+                <h2>{book.NAME}</h2>
+                <h3 style={{ marginTop: '40px' }}>by - <a href="#">{book.AUTHOR_NAME} </a></h3>
+                <p style={{ marginTop: '40px' }}>Category : <a href="#">{book.GENRE} </a></p>
+                <p style={{ marginTop: '40px' }}>Publisher : <a href="#">{book.PUBLISHER_NAME} </a></p>
+                <h5 style={{ marginTop: '40px' }}>Price: {taka} {book.PRICE}</h5>
                 <div style={{ marginTop: '40px' }}>
 
 
@@ -131,48 +166,47 @@ const BookPage = ({ title, author, category, price, total_rating = 5, total_revi
             onSelect={(k) => setKey(k)}
             className="mb-3"
           >
-            <Tab eventKey="home" title="Summary" style={{padding:'25px'}}>
-              Harry Potter and the Philosopher's Stone," the first book in J.K. Rowling's iconic series, follows the story of Harry Potter, a young boy who discovers he is a wizard on his eleventh birthday. Living with his neglectful aunt, uncle, and cousin after the death of his parents, Harry learns that he is famous in the wizarding world for surviving an attack by the dark wizard Voldemort as an infant, which left him with a lightning-shaped scar on his forehead.
-
-              As Harry begins his first year at Hogwarts School of Witchcraft and Wizardry, he makes friends with Ron Weasley and Hermione Granger, and together they uncover a mystery surrounding a magical object hidden within the school. Along the way, Harry discovers his own magical abilities and begins to learn about his past, including the truth about his parents' deaths.
-
-              As the trio delves deeper into the mystery, they encounter challenges and dangers, including encounters with dark creatures and dark magic. Ultimately, they uncover the truth behind the mysterious object, the Philosopher's Stone, and prevent it from falling into the hands of Voldemort, who seeks to regain his former power.
-
-              Filled with adventure, friendship, and the battle between good and evil, "Harry Potter and the Philosopher's Stone" sets the stage for the epic journey that unfolds throughout the rest of the series, captivating readers of all ages with its magical world and memorable characters.
+            <Tab eventKey="home" title="Summary" style={{ padding: '25px' }}>
+              {book.SUMMARY ? (
+                <p>{book.SUMMARY}</p>
+              ) : (
+                <p>No Summary Available for this book.</p>
+              )}
             </Tab>
+
             <Tab eventKey="profile" title="Specification">
 
               <Table striped bordered hover>
                 <thead>
                   <tr>
                     <th>Title</th>
-                    <th>ইকারাস</th>
+                    <th>{book.NAME}</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Author</td>
-                    <td>মুহম্মদ জাফর ইকবাল</td>
+                    <td>{book.AUTHOR_NAME}</td>
                   </tr>
                   <tr>
                     <td>Publisher</td>
-                    <td>সময় প্রকাশন</td>
+                    <td>{book.PUBLISHER_NAME}</td>
                   </tr>
                   <tr>
                     <td>ISBN</td>
-                    <td>9847011400907</td>
+                    <td>{book.ISBN}</td>
                   </tr>
                   <tr>
                     <td>Edition</td>
-                    <td>8th, 2014</td>
+                    <td>{book.EDITION}</td>
                   </tr>
                   <tr>
                     <td>Number of Pages</td>
-                    <td>144</td>
+                    <td>{book.PAGE}</td>
                   </tr>
                   <tr>
                     <td>Language</td>
-                    <td>Bangla</td>
+                    <td>{book.LANGUAGE}</td>
                   </tr>
                 </tbody>
               </Table>
@@ -180,7 +214,7 @@ const BookPage = ({ title, author, category, price, total_rating = 5, total_revi
 
             </Tab>
             <Tab eventKey="contact" title="Author" >
-              <AuthorDetail {...authorDetailInfo}/>
+              <AuthorDetail {...authorDetailInfo} />
             </Tab>
           </Tabs>
         </Container>
@@ -203,7 +237,7 @@ const BookPage = ({ title, author, category, price, total_rating = 5, total_revi
               <div key={index}>
                 <hr />
                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <img src={data.image} alt='reviewer' style={{ borderRadius: '10px',height:'100px',width:'100px', marginRight: '50px' }} />
+                  <img src={data.image} alt='reviewer' style={{ borderRadius: '10px', height: '100px', width: '100px', marginRight: '50px' }} />
                   <div>
                     <h5> by- <strong>{data.reviewer}</strong></h5>
                     <p>{data.date}</p>
@@ -229,7 +263,7 @@ const BookPage = ({ title, author, category, price, total_rating = 5, total_revi
 
 
       </div>
-
+      <Footer />
     </div>
   );
 };

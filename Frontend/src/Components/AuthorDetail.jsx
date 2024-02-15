@@ -27,7 +27,7 @@ const AuthorDetail = (props) => {
                 <Row className="">
                     <Col md={5} style={{ padding: '20px' }}>
                         <div className='author-image' style={{ marginBottom: '20px', padding: '20px' }}>
-                            <img src={image} alt='author' style={{ borderRadius: '10px', marginTop: '10px' }} />
+                            <img src={image} alt='author' style={{ borderRadius: '10px', marginTop: '10px' ,width:'250px',height:'250px'}} />
                             <div style={{ padding: '10px' }}>
                                 <h5>{followers} followers</h5>
                             </div>
