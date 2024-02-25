@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import CustomNavbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
@@ -9,43 +10,32 @@ import Container from 'react-bootstrap/Container';
 import 'react-datepicker/dist/react-datepicker.css';
 import MyreviewCard from '../Components/MyreviewCard'; // Capitalized the component name
 
+import { useEffect } from 'react';
+import { getReviewsByUserID } from './API';
 
-const Wishlist = () => {
 
-    const reviews = [
-        {
-            id: 1,
-            image: '/images/book1.jpg',
-            name: 'Product 1',
-            review: 'This is a review of product 1.I really love this book . I love a lot of things about this book. but I never get the thing what I love most so I am loser I cant do anything . I am shit',
-            rating: 5,
-            date: '2021-08-01'
-        },
-        {
-            id: 1,
-            image: '/images/book1.jpg',
-            name: 'Product 1',
-            review: 'This is a review of product 1',
-            rating: 5,
-            date: '2021-08-01'
-        },
-        {
-            id: 1,
-            image: '/images/book1.jpg',
-            name: 'Product 1',
-            review: 'This is a review of product 1',
-            rating: 5,
-            date: '2021-08-01'
-        },
-        {
-            id: 1,
-            image: '/images/book1.jpg',
-            name: 'Product 1',
-            review: 'This is a review of product 1',
-            rating: 5,
-            date: '2021-08-01'
+const Reviews = () => {
+
+
+
+
+    const [reviews, setReviews] = useState([]);
+
+    const fetchReviews = async () => {
+        try {
+            const response = await getReviewsByUserID();
+            setReviews(response.reviews);
         }
-    ]
+        catch (error) {
+            console.error('Error fetching reviews:', error);
+        }
+    }
+
+    useEffect(() => {
+        fetchReviews();
+    }, []);
+
+
 
 
     return (
@@ -93,11 +83,12 @@ const Wishlist = () => {
                                 {
                                     reviews.map((review, index) => {
                                         return <MyreviewCard key={index}
-                                            image={review.image}
-                                            name={review.name}
-                                            review={review.review}
-                                            rating={review.rating}
-                                            date={review.date} />
+                                            image={review.BOOK_IMAGE}
+                                            name={review.BOOK_TITLE}
+                                            review={review.REVIEW}
+                                            rating={review.STARS}
+                                            date={review.CREATED_AT} 
+                                            book_id={review.BOOK_ID}/>
 
                                     })
                                 }
@@ -112,4 +103,4 @@ const Wishlist = () => {
     )
 }
 
-export default Wishlist;
+export default Reviews;

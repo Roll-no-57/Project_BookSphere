@@ -4,7 +4,7 @@ import './CustomCarousel.css';
 
 function Customcarousel() {
 
-    const interval = 1000000000;
+    const interval = 1000;
 
     return (
         <div className="d-flex justify-content-center mt-3 " >

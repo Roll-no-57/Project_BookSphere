@@ -16,12 +16,18 @@ db.startup();
 const BookRouter = require('./routes/book');
 const ReviewRouter = require('./routes/review');
 const authorRouter = require('./routes/author');
+const publisherRouter = require('./routes/publisher');
+const userRouter = require('./routes/user');
+const loginRouter = require('./routes/login');
+const authRouter = require('./middleware/auth');
+const regRouter = require('./routes/reg');
+const wishlistRouter = require('./routes/wishlist');
 
 
 
 
 //declare and configure the app
-const app = express() 
+const app = express()
 
 //Middlewares
 app.use(morgan('dev'))    // this is a middleware that logs the request to the console
@@ -36,11 +42,20 @@ app.use(
 ); // this is a middleware that allows cross origin resource sharing
 
 
-
 //Link routes to routers
-app.use('/api/v1/books',BookRouter);
-app.use('/api/v1/reviews',ReviewRouter);
-app.use('/api/v1/authors',authorRouter);
+app.use('/api/v1/login', loginRouter);
+app.use('/api/v1/register', regRouter);
+
+// only allow authenticated users to access the routes
+app.use(authRouter);
+
+app.use('/api/v1/books', BookRouter);
+app.use('/api/v1/reviews', ReviewRouter);
+app.use('/api/v1/authors', authorRouter);
+app.use('/api/v1/publishers', publisherRouter);
+app.use('/api/v1/users', userRouter);
+app.use('/api/v1/wishlist', wishlistRouter);
+
 
 
 //Setting up the connection
@@ -51,5 +66,5 @@ app.listen(port, console.log(`Server is running on port ${port} . Link : http://
 
 // shutdown the server if any error occurs 
 process
-    .once('SIGTERM', db.shutdown)
-    .once('SIGINT',  db.shutdown);
+  .once('SIGTERM', db.shutdown)
+  .once('SIGINT', db.shutdown);

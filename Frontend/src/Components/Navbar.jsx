@@ -6,6 +6,8 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
+import { useState, useEffect } from 'react';
+import { getUser } from '../Pages/API';
 
 
 // import { RiShoppingCart2Line } from "react-icons/ri";
@@ -14,11 +16,28 @@ import { RiShoppingCart2Line, RiHeartLine, RiUserLine, RiDoorOpenFill } from "re
 
 const CustomNavbar = () => {
 
+    const [user, setUser] = useState();
+
+    const fetchUser = async () => {
+        try {
+            const response = await getUser();
+            setUser(response.user);
+        } catch (error) {
+            console.error('User fetch failed:', error);
+        }
+    }
+
+
+    useEffect(() => {
+        fetchUser();
+    }, []);
+
+
     return (
         <div style={{display:'flex',justifyContent:'center'}}>
             <Navbar expand="lg" className="bg-body-tertiary shadow-lg pt-50  " >
                 <Container fluid>
-                    <Navbar.Brand as={Link} to="/" >
+                    <Navbar.Brand as={Link} to="/home" >
                         <img
                             src="/images/logo.png"
                             alt="Logo"
@@ -72,7 +91,7 @@ const CustomNavbar = () => {
                                     <Dropdown.Item href='/my-section/orders'>My Orders</Dropdown.Item>
                                     <Dropdown.Item href='/my-section/reviews'>My ratings and reviews</Dropdown.Item>
                                     <Dropdown.Divider />
-                                    <Dropdown.Item>Sign Out</Dropdown.Item>
+                                    <Dropdown.Item href='/'>Sign Out</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                             {/* <Button variant="primary">Login</Button> */}

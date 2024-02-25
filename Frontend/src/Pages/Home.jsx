@@ -33,12 +33,12 @@ const Home = () => {
   ];
 
   const authors = [
-    { id: 1, name: 'Product 1', author: 'Apurbo Hossain', price: '$10.00', image: '/images/defaultauthor.jpg' },
-    { id: 2, name: 'Product 2', author: 'Apurbo Hossain', price: '$15.00', image: '/images/defaultauthor.jpg' },
-    { id: 3, name: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', image: '/images/defaultauthor.jpg' },
-    { id: 3, name: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', image: '/images/defaultauthor.jpg' },
-    { id: 3, name: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', image: '/images/defaultauthor.jpg' },
-    { id: 3, name: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', image: '/images/defaultauthor.jpg' },
+    { ID: 1, NAME: 'Product 1', author: 'Apurbo Hossain', price: '$10.00', IMAGE: '/images/defaultauthor.jpg' },
+    { ID: 2, NAME: 'Product 2', author: 'Apurbo Hossain', price: '$15.00', IMAGE: '/images/defaultauthor.jpg' },
+    { ID: 3, NAME: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', IMAGE: '/images/defaultauthor.jpg' },
+    { ID: 3, NAME: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', IMAGE: '/images/defaultauthor.jpg' },
+    { ID: 3, NAME: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', IMAGE: '/images/defaultauthor.jpg' },
+    { ID: 3, NAME: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', IMAGE: '/images/defaultauthor.jpg' },
 
     // Add more products as needed
   ];

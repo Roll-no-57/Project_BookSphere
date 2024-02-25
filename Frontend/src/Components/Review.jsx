@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState ,useEffect} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -19,18 +19,22 @@ const styles = {
     }
 }
 
-function Review() {
+function Review(props) {
     const [show, setShow] = useState(false);
-    const [review, setReview] = useState('Write a review');
-    const [variant, setVariant] = useState('primary');
+    const [review, setReview] = useState(props.isReviewed ? 'Update Review' : 'Add Review');
+    const [variant, setVariant] = useState(props.isReviewed ? 'warning' : 'primary');
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const handleSave = () => {
         console.log('Save');
-        setReview('Edit Review');
-        setVariant('warning');
         handleClose();
+        const reviewObject = {
+            review: document.getElementById("ReviewForm.ControlTextarea1").value,
+            stars: currentValue
+        };
+        props.addReview(reviewObject);
+        console.log('Review Object:', reviewObject);
     }
 
 
@@ -54,6 +58,19 @@ function Review() {
         setHoverValue(undefined);
     }
 
+    useEffect(() => {
+        setVariant(props.isReviewed ? 'warning' : 'primary');
+        setReview(props.isReviewed ? 'Update Review' : 'Add Review');
+    }, [props.isReviewed]);
+
+    // if(props.isReviewed){
+    //     setVariant('warning');
+    //     setReview('Update Review');
+    // }else{
+    //     setVariant('primary');
+    //     setReview('Add Review');
+    // }
+
     return (
         <>
             <Button variant={variant} onClick={handleShow}>
@@ -66,17 +83,16 @@ function Review() {
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        
-                        <div styles={styles.stars}>
 
+                        <div styles={styles.stars}>
                             {
                                 stars.map((_, index) => {
                                     return (
                                         <FaStar
                                             key={index}
                                             size={24}
-                                            onClick={()=>{handleStartClick(index + 1)}}
-                                            onMouseOver={()=>{handleMouseOver(index + 1)}}
+                                            onClick={() => { handleStartClick(index + 1) }}
+                                            onMouseOver={() => { handleMouseOver(index + 1) }}
                                             onMouseLeave={handleMouseLeave}
                                             color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
                                             style={{ marginRight: 10, cursor: "pointer" }}

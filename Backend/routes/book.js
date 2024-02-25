@@ -9,18 +9,14 @@ const router = express.Router();
 //URL : /api/v1/books/
 router.get('/', async (req, res) => {
     try {
-
-
+        
         const booksResult = await DB_book.getAllBooks();
-        const booksCountResult = await DB_book.getAllBooksCount();
-        const booksCount = booksCountResult[0].CNT;
-
         // Sending the data as JSON in the response
         const result = {
             books: booksResult,
-            totalBooks: booksCount,
+            totalBooks: booksResult.length,
         }
-        res.json(result);
+        res.status(200).json(result);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -32,12 +28,19 @@ router.get('/', async (req, res) => {
 // URL : /api/v1/books/:bookID
 router.get('/:bookID', async (req, res) => {
 
-    console.log("bookID that want to retrieve :" + req.params.bookID);
-    const booksResult = await DB_book.getBookByID(req.params.bookID);
-    const resResult = {
-        book: booksResult[0],
+    try {
+        const bookResult = await DB_book.getBookByID(req.params.bookID);
+        if (bookResult.length == 0) {
+            res.status(404).json({ message: "Book not found" });
+        } else {
+            res.status(200).json({book:bookResult});
+        }
     }
-    res.json(resResult);
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+
 
 });
 
@@ -59,14 +62,22 @@ router.get('/author/:authorID', async (req, res) => {
 });
 
 
-
-
-router.delete('/:bookID', async (req, res) => {
-    const result = await DB_book.deleteBook(req.params.bookID);
-    res.json(result);
+// GET all books of a particular publisher
+// URL : /api/v1/books/publisher/:publisherID
+router.get('/publisher/:publisherID', async (req, res) => {
+    try {
+        const booksResult = await DB_book.getBooksByPublisherID(req.params.publisherID);
+        const resResult = {
+            books: booksResult,
+            booksCount: booksResult.length,
+        }
+        res.status(200).json(resResult);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
-
-
 
 
 

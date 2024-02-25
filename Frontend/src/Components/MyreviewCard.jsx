@@ -3,9 +3,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FaStar } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
-const MyreviewCard = (props) => {
-    const { image, name, review, rating, date } = props;
+const  MyreviewCard = (props) => {
+    const { image, name, review, rating, date ,book_id} = props;
 
 
 
@@ -20,9 +21,9 @@ const MyreviewCard = (props) => {
                     </Col>
                     <Col style={{ padding: '30px', paddingLeft: '70px' }} md={6} className="9 d-flex flex-column">
                         <div className='book-details'>
-                            <a href="/book/2" style={{ marginBottom: '30px', textDecoration: 'none' }} className="text-decoration-none text-primary bold">
+                            <Link to={`/book/${book_id}`} style={{ marginBottom: '30px', textDecoration: 'none' }} className="text-decoration-none text-primary bold">
                                 <h5>{name}</h5>
-                            </a>
+                            </Link>
                             <div style={{ marginTop: '20px',marginBottom:'20px' }}>at- {date}</div>
                             {/* <h5 style={{ marginTop: '30px' }}>Rating : {rating}</h5> */}
                             <div>
@@ -37,7 +38,7 @@ const MyreviewCard = (props) => {
                             </div>
                             <p style={{ marginTop: '30px' }}>{review}</p>
                             
-                            <a href='/book/2' style={{ marginTop: '30px' }} className="btn btn-warning btn-sm mt-2">Edit Your Review</a>
+                            <Link to={`/book/${book_id}`} style={{ marginTop: '30px' }} className="btn btn-warning btn-sm mt-2">Edit Your Review</Link>
                         </div>
                     </Col>
                     <hr/>

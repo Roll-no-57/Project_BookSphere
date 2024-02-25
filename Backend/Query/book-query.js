@@ -19,18 +19,6 @@ async function getAllBooks() {
 }
 
 
-async function getAllBooksCount() {
-    const sql = `
-        SELECT 
-            COUNT(*) AS CNT
-        FROM 
-            Book
-        `;
-    const binds = {
-    }
-    return (await database.execute(sql, binds, database.options)).rows;
-}
-
 async function getBookByID(ID) {
 
     console.log("get book :" + ID);
@@ -53,7 +41,7 @@ async function getBookByID(ID) {
     const binds = {
         id: ID
     }
-    return (await database.execute(sql, binds, database.options)).rows;
+    return (await database.execute(sql, binds, database.options)).rows[0];
 }
 
 
@@ -95,7 +83,8 @@ async function getBookByAuthorIDCount(ID) {
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
-async function getBooksByPublisherID(ID, offset, limit) {
+
+async function getBooksByPublisherID(ID) {
     const sql = `
         SELECT 
             book.*, 
@@ -109,31 +98,14 @@ async function getBooksByPublisherID(ID, offset, limit) {
         WHERE 
             book.publisher_id = :id
         ORDER BY book.name
-        OFFSET :offset ROWS 
-        FETCH NEXT :limit ROWS ONLY
+
         `;
     const binds = {
-        id: ID, offset, limit
+        id: ID,
     }
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
-
-async function getBookByPublisherIDCount(ID) {
-    const sql = `
-        SELECT 
-            COUNT(*) AS CNT
-        FROM 
-            book
-        JOIN publisher ON publisher.id = book.publisher_id
-        WHERE 
-            book.publisher_id = :id
-        `;
-    const binds = {
-        id: ID
-    }
-    return (await database.execute(sql, binds, database.options)).rows;
-}
 async function searchBooks(keyword, offset, limit) {
     const sql = `
 
@@ -218,12 +190,10 @@ async function getNewBooks() {
 
 module.exports = {
     getAllBooks,
-    getAllBooksCount,
     getBookByID,
     getBookByAuthorID,
     getBookByAuthorIDCount,
     getBooksByPublisherID,
-    getBookByPublisherIDCount,
     searchBooks,
     searchBooksCount,
     editBook,

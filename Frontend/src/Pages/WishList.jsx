@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import CustomNavbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import Col from 'react-bootstrap/Col';
@@ -8,20 +8,27 @@ import './User.css';
 import Container from 'react-bootstrap/Container';
 import 'react-datepicker/dist/react-datepicker.css';
 import WishCard from '../Components/wishCard'; // Capitalized the component name
+import { getWishlistByUserID, deleteBookFromWishlist } from './API';
 
 const Wishlist = () => {
-    const products = [
-        { id: 1, name: 'Product 1', author: 'Apurbo Hossain', price: '$10.00', image: '/images/book1.jpg' },
-        { id: 2, name: 'Product 2', author: 'Apurbo Hossain', price: '$15.00', image: '/images/book2.jpg' },
-        { id: 3, name: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', image: '/images/book1.jpg' },
-        { id: 4, name: 'Product 4', author: 'Apurbo Hossain', price: '$25.00', image: '/images/book1.jpg' },
-        { id: 2, name: 'Product 2', author: 'Apurbo Hossain', price: '$15.00', image: '/images/book2.jpg' },
-        { id: 2, name: 'Product 2', author: 'Apurbo Hossain', price: '$15.00', image: '/images/book2.jpg' },
-        { id: 5, name: 'Product 5', author: 'Apurbo Hossain', price: '$30.00', image: '/images/book1.jpg' },
-        { id: 2, name: 'Product 2', author: 'Apurbo Hossain', price: '$15.00', image: '/images/book2.jpg' },
-        { id: 2, name: 'Product 2', author: 'Apurbo Hossain', price: '$15.00', image: '/images/book2.jpg' },
-        { id: 2, name: 'Product 2', author: 'Apurbo Hossain', price: '$15.00', image: '/images/book2.jpg' },
-    ];
+    
+
+    const [products, setProducts] = useState([]);
+
+    const fetchWishList = async () => {
+        const response = await getWishlistByUserID();
+        setProducts(response.wishlist);
+    }
+
+    useEffect(() => {
+        fetchWishList();
+    }, []);
+
+    const removeFromWishlist = async (bookID) => {
+        await deleteBookFromWishlist(bookID);
+        fetchWishList();
+    }
+
 
     return (
         <div>
@@ -65,7 +72,7 @@ const Wishlist = () => {
                                 <h3>My Wishlist</h3>
                             </div>
                             <div className='user-activity'>
-                                <WishCard products={products} />
+                                <WishCard removeFromWishlist={removeFromWishlist} products={products} />
                             </div>
                         </Col>
                     </Row>

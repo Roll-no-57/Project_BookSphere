@@ -39,7 +39,6 @@ router.get('/:authorID', async (req, res) => {
         const authorsResult = await DB_author.getAuthorByID(req.params.authorID);
         const resResult = {
             author: authorsResult[0],
-
         }
         res.status(200).json(resResult);
     }

@@ -13,6 +13,8 @@ import User from './Pages/User';
 import wishlist from './Pages/WishList';
 import orders from './Pages/Orders';
 import reviews from './Pages/Reviews';
+import loginPage from './Pages/loginPage';
+import registration from './Pages/SignUp';
 // import MyCart from './Pages/MyCart';
 // import CategoryDetailPage from './Pages/CategoryDetailPage';
 // import Trackorders from './Pages/Trackorders';
@@ -34,9 +36,12 @@ function App() {
         <ScrollToTop />
         <Routes>
 
-          <Route path='' Component={Home} />
-          <Route path='/' Component={Home} />
+          <Route path='/registration' Component={registration} />
+          <Route path='/' Component={loginPage} />
+          <Route path='' Component={loginPage} />
 
+          <Route path='/home' Component={Home} />
+          {/* <Route path='' Component={Home} /> */}
           <Route path='/book' Component={AllBooks} />
           <Route path='/book/:id' Component={BookDetail} />
 
@@ -53,6 +58,7 @@ function App() {
           <Route path='/my-section/orders' Component={orders} />
           <Route path='/my-section/wishlist' Component={wishlist} />
           <Route path='/my-section/reviews' Component={reviews} />
+          {/* <Route path='/my-section/my-following' Component={following} /> */}
           {/* <Route path='/my-section/cart' Component={MyCart}/> */}
           {/* <Route path='/my-section/track-order' Component={Trackorders}/> */}
 
