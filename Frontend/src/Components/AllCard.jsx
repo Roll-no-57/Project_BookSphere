@@ -7,6 +7,7 @@ const AllCard = (props) => {
 
     const [currentPage, setCurrentPage] = useState(1);
     const productPerPage = 20; // Change to 5 to display 5 books per row
+    
 
     const indexOfFirstproduct = productPerPage * (currentPage - 1);
     const indexOfLastproduct = indexOfFirstproduct + productPerPage;

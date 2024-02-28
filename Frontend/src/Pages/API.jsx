@@ -218,6 +218,6 @@ export async function deleteBookFromWishlist(bookID) {
 
 // these function are used in user 
 export async function getUser() {
-  const j = await getX('users/', {});
+  const j = await getX(`users/current`, {});
   return j;
 }

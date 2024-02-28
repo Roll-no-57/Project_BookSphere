@@ -15,7 +15,8 @@ import orders from './Pages/Orders';
 import reviews from './Pages/Reviews';
 import loginPage from './Pages/loginPage';
 import registration from './Pages/SignUp';
-// import MyCart from './Pages/MyCart';
+import MyCart from './Pages/cartPage';
+import Checkout from './Pages/CheckoutPage';
 // import CategoryDetailPage from './Pages/CategoryDetailPage';
 // import Trackorders from './Pages/Trackorders';
 
@@ -59,7 +60,8 @@ function App() {
           <Route path='/my-section/wishlist' Component={wishlist} />
           <Route path='/my-section/reviews' Component={reviews} />
           {/* <Route path='/my-section/my-following' Component={following} /> */}
-          {/* <Route path='/my-section/cart' Component={MyCart}/> */}
+          <Route path='/my-section/cart' Component={MyCart}/>
+          <Route path = '/my-section/checkoutPage' Component={Checkout}/>
           {/* <Route path='/my-section/track-order' Component={Trackorders}/> */}
 
 

@@ -24,6 +24,24 @@ router.get('/', async (req, res) => {
     }
 });
 
+//GET the current user 
+// URL : /api/users/current
+router.get('/current', async (req, res) => {
+    try {
+        const user = req.user.user.ID;
+        const userResult = await DB_user.getUserByID(user);
+        const resResult = {
+            user: userResult[0],
+        }
+        res.status(200).json(resResult);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 // GET a particular user
 // URL : /api/users/:userID
 router.get('/:userID', async (req, res) => {

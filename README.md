@@ -1,4 +1,4 @@
-# Project Name
+# Book Sphere
 
 ## Description
 
@@ -70,7 +70,7 @@ Briefly describe the purpose and functionality of the project.
 - React Bootstrap
 - Node.js
 - Express.js
-- MongoDB
+- Oracle DB
 
 ## Contributing
 

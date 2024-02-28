@@ -6,6 +6,7 @@ import { setItem } from './localStorage';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
+import Card from 'react-bootstrap/Card';
 
 const Login = () => {
     const emailRef = useRef(null);
@@ -48,40 +49,44 @@ const Login = () => {
 
 
     return (
-        <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
-            <div className="p-4 shadow-lg rounded" style={{ width: '400px' }}>
-                <h2 className="text-center mb-4">Login</h2>
-                <Form onSubmit={handleLogin}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control
-                            type="email"
-                            placeholder="Enter email"
-                            ref={emailRef}
-                        />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control
-                            type="password"
-                            placeholder="Password"
-                            ref={passwordRef}
-                        />
-                    </Form.Group>
-                    <div className="d-flex justify-content-center">
-                        <Button variant="primary" type="submit" className="mb-3">
-                            Login
-                        </Button>
+        <Card>
+            <Card.Body>
+                <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+                    <div className="p-4 shadow-lg rounded" style={{ width: '400px' }}>
+                        <h2 className="text-center mb-4">Login</h2>
+                        <Form onSubmit={handleLogin}>
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Label>Email address</Form.Label>
+                                <Form.Control
+                                    type="email"
+                                    placeholder="Enter email"
+                                    ref={emailRef}
+                                />
+                            </Form.Group>
+                            <Form.Group className="mb-3" controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control
+                                    type="password"
+                                    placeholder="Password"
+                                    ref={passwordRef}
+                                />
+                            </Form.Group>
+                            <div className="d-flex justify-content-center">
+                                <Button variant="primary" type="submit" className="mb-3">
+                                    Login
+                                </Button>
+                            </div>
+                            <Row>
+                                <Col>
+                                    <p className="text-center">Don't have an account? <Link to="/registration">Sign up</Link></p>
+                                </Col>
+                            </Row>
+                        </Form>
+                        <ToastContainer position="top-right" autoClose={2000} />
                     </div>
-                    <Row>
-                        <Col>
-                            <p className="text-center">Don't have an account? <Link to="/registration">Sign up</Link></p>
-                        </Col>
-                    </Row>
-                </Form>
-                <ToastContainer position="top-right" autoClose={2000} />
-            </div>
-        </Container>
+                </Container>
+            </Card.Body >
+        </Card>
     );
 };
 
