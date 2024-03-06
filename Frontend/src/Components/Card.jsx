@@ -11,6 +11,10 @@ function CustomCard(props) {
   return (
     <div className="card-container" >
       <Card className="custom-card" >
+        <span class="position-absolute top-0 start-30 translate-middle badge rounded-pill bg-success">
+          25% off
+          <span class="visually-hidden">unread messages</span>
+        </span>
         <Card.Img variant="top" src={props.IMAGE} />
         <Card.Body className="text-center" style={{ backgroundColor: '#ffffe4' }}>
           <Card.Subtitle style={{ marginBottom: '6px', fontWeight: 'bold' }}>{props.NAME}</Card.Subtitle>
