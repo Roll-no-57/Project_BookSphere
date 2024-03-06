@@ -18,6 +18,7 @@ import registration from './Pages/SignUp';
 import MyCart from './Pages/cartPage';
 import Checkout from './Pages/CheckoutPage';
 import CategoryDetailPage from './Pages/CategoryDetailPage';
+import Aboutus from './Pages/About_us';
 // import Trackorders from './Pages/Trackorders';
 
 function ScrollToTop() {
@@ -54,6 +55,8 @@ function App() {
 
           <Route path='/publisher' Component={AllPublishers} />
           <Route path='/publisher/:id' Component={PublisherDetailPage} />
+
+          <Route path='/about-us' Component={Aboutus} />
 
           <Route path='/my-section/profile' Component={User} />
           <Route path='/my-section/orders' Component={orders} />

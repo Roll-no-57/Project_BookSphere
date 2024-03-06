@@ -49,7 +49,7 @@ const Login = () => {
 
 
     return (
-        <Card>
+        <Card style={{backgroundColor:'#ffffe4'}}>
             <Card.Body>
                 <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
                     <div className="p-4 shadow-lg rounded" style={{ width: '400px' }}>
@@ -72,7 +72,7 @@ const Login = () => {
                                 />
                             </Form.Group>
                             <div className="d-flex justify-content-center">
-                                <Button variant="primary" type="submit" className="mb-3">
+                                <Button variant="success" type="submit" className="mb-3">
                                     Login
                                 </Button>
                             </div>

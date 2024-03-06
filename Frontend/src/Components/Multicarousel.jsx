@@ -14,7 +14,7 @@ function MultiCarousel(props) {
         },
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
-            items: 4
+            items: 5
         },
         tablet: {
             breakpoint: { max: 1024, min: 464 },
@@ -28,12 +28,12 @@ function MultiCarousel(props) {
 
     return (
         <div className='carousel-container' >
-            <div style={{ textAlign: 'center', margin: '20px 0', marginBottom: '30px' }}>
+            <div style={{ textAlign: 'center',  marginBottom: '5px' }}>
                 <h2>{headLine}</h2>
-                <hr style={{ width: '50%', borderTop: '2px solid black', margin: 'auto' }} />
+                <hr style={{ width: '20%', borderTop: '2px solid black', margin: 'auto' }} />
             </div>
 
-            <div className="multi-carousel" style={{ marginLeft: '100px', marginRight: '100px', marginBottom: '70px' }}>
+            <div className="multi-carousel" style={{ marginLeft: '50px', marginRight: '50px', marginBottom: '20px' }}>
                 <div>
                     <Carousel
                         responsive={responsive}

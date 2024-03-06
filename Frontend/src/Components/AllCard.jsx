@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import FloatingDivWrapper from './FloatingDivWrapper';
 import Pagination from 'react-bootstrap/Pagination';
+import './AllCard.css';
 
 const AllCard = (props) => {
-    const { product,link, component: CustomCard,headlines ,headTitle,} = props;
+    const { product, link, component: CustomCard, headlines, headTitle, } = props;
 
     const [currentPage, setCurrentPage] = useState(1);
     const productPerPage = 20; // Change to 5 to display 5 books per row
-    
+
 
     const indexOfFirstproduct = productPerPage * (currentPage - 1);
     const indexOfLastproduct = indexOfFirstproduct + productPerPage;
@@ -16,22 +17,7 @@ const AllCard = (props) => {
     const totalPages = Math.ceil(product.length / productPerPage);
     const showPagination = totalPages > 5 ? 5 : totalPages;
 
-    const renderproducts = () => {
-        const rows = [];
-        for (let i = 0; i < currentproducts.length; i += productPerPage) {
-            const row = currentproducts.slice(i, i + productPerPage).map((currproduct, index) => (
-                <div className="col-md-3" key={index}>
-                    <CustomCard
-                        link={link}
-                        key={currproduct.ID}
-                        {...currproduct}
-                    />
-                </div>
-            ));
-            rows.push(<div className="row">{row}</div>);
-        }
-        return rows; // Return the rows array
-    };
+
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -41,20 +27,32 @@ const AllCard = (props) => {
         <div>
             <FloatingDivWrapper>
                 <h1 style={{ textAlign: 'center' }}>{headTitle}</h1>
-                <hr/>
-                     <h4>
-                         <p>{headlines}</p>
-                     </h4>
-                <hr/>
+                <hr />
+                <h4>
+                    <p>{headlines}</p>
+                </h4>
+                <hr />
             </FloatingDivWrapper>
 
 
             <FloatingDivWrapper>
                 {/* Pass props to CustomCard */}
 
-                <div className="container">
-                    {renderproducts()}
+                <div className="container " >
+                    {
+                        currentproducts.map((currproduct, index) => (
+                            <div key={index}>
+                                <CustomCard
+                                    link={link}
+                                    key={currproduct.ID}
+                                    {...currproduct}
+                                />
+                            </div>
+                        ))
+                    }
                 </div>
+
+
                 <div className="clearfix" style={{ marginTop: '20px', justifyContent: 'center', display: 'flex' }}>
                     <Pagination>
                         <Pagination.Prev

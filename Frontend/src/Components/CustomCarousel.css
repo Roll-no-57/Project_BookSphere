@@ -3,7 +3,7 @@
 .custom-carousel {
     border-radius: 10px; /* Adjust the value to change the roundness of the corners */
     overflow: hidden; /* Ensures that the rounded corners are applied correctly */
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     transition: box-shadow 0.5s ease, border 0.5s ease; /* Add transition for box-shadow and border */
 }
 

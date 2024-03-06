@@ -9,7 +9,7 @@ async function getAllBooks() {
         book.*,author.name AS author_name
         FROM book
         JOIN author ON author.id = book.author_id
-        ORDER BY book.id
+        ORDER BY book.edition
         
         `;
     const binds = {

@@ -34,3 +34,7 @@ router.get('/user', async (req,res)=>{
     }
 });
 
+
+router.post('/',async (req,res)=>{
+    
+});

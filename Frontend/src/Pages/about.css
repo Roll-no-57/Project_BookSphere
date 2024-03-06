@@ -1,0 +1,53 @@
+
+
+
+  .card-product .btn-action:hover {
+    background-color: var(--fc-primary);
+    color: var(--fc-white);
+  }
+  .card-product .btn-action {
+    align-items: center;
+    background-color: var(--fc-white);
+    border-radius: .5rem;
+    box-shadow: 0 2px 4px -1px rgba(145,158,171,.2),0 4px 5px 0 rgba(145,158,171,.14),0 1px 10px 0 rgba(145,158,171,.12);
+    color: var(--fc-gray-800);
+    display: inline-flex;
+    font-size: 14px;
+    height: 34px;
+    justify-content: center;
+    line-height: 34px;
+    text-align: center;
+    transition: all .3s ease 0s;
+    vertical-align: middle;
+    width: 34px;
+  }
+  a:hover {
+    color: #088a08;
+  }
+  a, a:hover {
+    text-decoration: none;
+  }
+  a:hover {
+    --fc-link-color-rgb: var(--fc-link-hover-color-rgb);
+  }
+  a {
+    color: #0aad0a;
+  }
+  a {
+    color: rgba(var(--fc-link-color-rgb),var(--fc-link-opacity,1));
+    text-decoration: underline;
+  }
+  *, ::after, ::before {
+    box-sizing: border-box;
+  }
+  .card-product:hover .card-hidden, .card-product:hover .card-product-action {
+    visibility: visible;
+  }
+  .card-product .card-product-action {
+    visibility: hidden;
+  }
+  .text-center {
+    text-align: center !important;
+  }
+  
+  

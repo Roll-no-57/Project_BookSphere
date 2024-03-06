@@ -8,8 +8,7 @@ import './User.css';
 import Container from 'react-bootstrap/Container';
 import 'react-datepicker/dist/react-datepicker.css';
 import MyOrderCard from '../Components/MyorderCard'; // Capitalized the component name
-import AllCard from '../Components/AllCard'; // Capitalized the component name
-import Card from '../Components/Card'; // Capitalized the component name
+
 
 const MyOrders = () => {
     const products = [

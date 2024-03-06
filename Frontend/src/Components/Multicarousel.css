@@ -1,10 +1,11 @@
 .carousel-container {
     border-radius: 10px;
     box-shadow: 5px 5px 5px rgba(72, 70, 70, 0.1), -5px -5px 10px rgba(0, 0, 0, 0.1), 0px -5px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-left: 90px;
-    margin-right: 90px;
-    margin-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-left: 48px;
+    margin-right: 48px;
+    margin-bottom: 30px;
     transition: box-shadow 0.3s ease;
 }
 

@@ -1,10 +1,10 @@
 .custom-card {
-  width: 100%; /* Set the card width to 100% */
+  width: 210px; /* Set the card width to 100% */
   height: auto; /* Allow the card height to adjust based on content */
   margin-top: 10px;
   margin-bottom: 10px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 23px;
+  margin-left: 23px;
   transition: box-shadow 0.5s ease, border 0.5s ease;
 }
 
@@ -17,5 +17,18 @@
 .custom-card:hover {
   box-shadow: 0 0 10px rgba(74, 71, 71, 0.639);
   border: 1px solid #0aad0a;
-  cursor: pointer;
+  /* cursor: pointer; */
+}
+
+
+
+
+.btn-action .bi-eye {
+  font-size: 1.5rem; /* Adjust the font size as needed */
+  color: #000; /* Set the color of the icon */
+  transition: color 0.3s ease; /* Add transition effect for color change */
+}
+
+.btn-action:hover .bi-eye {
+  color: #333; /* Change the color on hover */
 }

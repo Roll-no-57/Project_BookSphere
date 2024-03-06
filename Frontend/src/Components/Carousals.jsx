@@ -7,8 +7,8 @@ function Customcarousel() {
     const interval = 3000;
 
     return (
-        <div className="d-flex justify-content-center mt-3 " >
-            <Carousel className="custom-carousel" style={{ height: "276px", width: "1440px" ,borderRadius: "10px" ,marginTop:'40px'}}>
+        <div className="d-flex justify-content-center " >
+            <Carousel className="custom-carousel" style={{ height: "276px", width: "1440px" ,borderRadius: "10px" ,marginTop:'25px'}}>
 
                 <Carousel.Item interval={interval}>
                     <img
