@@ -170,7 +170,7 @@ const BookPage = () => {
               <div className='book-details'>
                 <h2>{book.NAME}</h2>
                 <h3 style={{ marginTop: '40px' }}>by - <Link to={`/author/${book.AUTHOR_ID}`} style={{ textDecoration: 'none' }}>{book.AUTHOR_NAME} </Link></h3>
-                <p style={{ marginTop: '40px' }}>Category : <a href="#" style={{ textDecoration: 'none' }}>{book.GENRE} </a></p>
+                <p style={{ marginTop: '40px' }}>Category : <Link  to={`/category/${book.GENRE}`} style={{ textDecoration: 'none' }}>{book.GENRE} </Link></p>
                 <p style={{ marginTop: '40px' }}>Publisher : <Link to={`/publisher/${book.PUBLISHER_ID}`} style={{ textDecoration: 'none' }}>{book.PUBLISHER_NAME} </Link></p>
                 <h5 style={{ marginTop: '40px' }}>Price: {taka} {book.PRICE}</h5>
                 <div style={{ marginTop: '40px' }}>

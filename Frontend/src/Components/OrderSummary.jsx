@@ -18,7 +18,7 @@ const OrderSummary = () => {
     };
 
     return (
-        <Card>
+        <Card style={{backgroundColor:'#ffffe4'}}>
             <Card.Body>
                 <h4>Checkout Summary</h4>
                 <hr />

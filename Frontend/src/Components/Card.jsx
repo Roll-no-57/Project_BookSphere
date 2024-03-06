@@ -9,10 +9,10 @@ function CustomCard(props) {
   
 
   return (
-    <div className={`card-container `}>
+    <div className="card-container" >
       <Card className="custom-card" >
         <Card.Img style={{ marginBottom: '-22px' }} variant="top" src={props.IMAGE} />
-        <Card.Body className="text-center">
+        <Card.Body className="text-center" style={{backgroundColor:'#ffffe4'}}>
           <Card.Header style={{ marginBottom: '6px', fontWeight: 'bold' }}>{props.NAME}</Card.Header>
           <Card.Subtitle style={{ marginBottom: '6px' }}>Writer: {props.AUTHOR_NAME}</Card.Subtitle>
           <Card.Subtitle style={{ marginBottom: '6px' }}>Price:{taka} {props.PRICE}</Card.Subtitle>

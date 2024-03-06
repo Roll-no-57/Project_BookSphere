@@ -17,8 +17,8 @@ const CheckoutPage = () => {
                             <h3 className="d-flex justify-content-center">Check out page</h3>
                         </FloatWmargin>
                     </div>
-                    <Col md={8} style={{ paddingTop: '10px' }}>
-                        <Card>
+                    <Col md={8} style={{ paddingTop: '10px'  }}>
+                        <Card style={{backgroundColor:'#ffffe4'}}>
                             <Card.Body>
 
                                 <h4 >Shipping Address</h4>

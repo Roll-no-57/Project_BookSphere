@@ -4,16 +4,16 @@ import './CustomCarousel.css';
 
 function Customcarousel() {
 
-    const interval = 1000;
+    const interval = 3000;
 
     return (
         <div className="d-flex justify-content-center mt-3 " >
-            <Carousel className="custom-carousel" style={{ height: "500px", width: "1350px" ,borderRadius: "10px" ,marginTop:'40px'}}>
+            <Carousel className="custom-carousel" style={{ height: "276px", width: "1440px" ,borderRadius: "10px" ,marginTop:'40px'}}>
 
                 <Carousel.Item interval={interval}>
                     <img
                         className="d-block w-100"
-                        src="/images/carousel.png"
+                        src="/images/car1.png"
                         alt="First slide"
                     />
                     {/* <Carousel.Caption>
@@ -25,7 +25,7 @@ function Customcarousel() {
                 <Carousel.Item interval={interval}>
                     <img
                         className="d-block w-100"
-                        src="/images/carousel.png"
+                        src="/images/car2.png"
                         alt="First slide"
                     />
                     {/* <Carousel.Caption>
@@ -39,7 +39,7 @@ function Customcarousel() {
                 <Carousel.Item interval={interval}>
                     <img
                         className="d-block w-100"
-                        src="/images/carousel2.png"
+                        src="/images/car3.png"
                         alt="First slide"
                     />
                     {/* <Carousel.Caption>

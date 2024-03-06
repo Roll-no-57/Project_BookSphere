@@ -17,7 +17,7 @@ import loginPage from './Pages/loginPage';
 import registration from './Pages/SignUp';
 import MyCart from './Pages/cartPage';
 import Checkout from './Pages/CheckoutPage';
-// import CategoryDetailPage from './Pages/CategoryDetailPage';
+import CategoryDetailPage from './Pages/CategoryDetailPage';
 // import Trackorders from './Pages/Trackorders';
 
 function ScrollToTop() {
@@ -50,7 +50,7 @@ function App() {
           <Route path='/author/:id' Component={AuthorDetailPage} />
 
           <Route path='/category' Component={AllCategories} />
-          {/* <Route path='/category/:id' Component={CategoryDetailPage}/> */}
+          <Route path='/category/:id' Component={CategoryDetailPage}/>
 
           <Route path='/publisher' Component={AllPublishers} />
           <Route path='/publisher/:id' Component={PublisherDetailPage} />

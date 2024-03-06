@@ -32,10 +32,10 @@ const CustomNavbar = () => {
 
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Navbar expand="lg" className="bg-body-tertiary shadow-lg pt-50 rounded " style={{ borderRadius: '10px' }} >
+        // <div style={{ display: 'flex', justifyContent: 'center', backgroundColor:'#ffffe4'}}>
+            <Navbar expand="lg" className="bg-offwhite shadow-lg pt-50 rounded" style={{ borderRadius: '10px' }}>
                 <Container fluid>
-                    <Navbar.Brand as={Link} to="/home" >
+                    <Navbar.Brand as={Link} to="/home" style={{marginLeft:'90px'}}>
                         <img
                             src="/images/logo.png"
                             alt="Logo"
@@ -59,7 +59,7 @@ const CustomNavbar = () => {
                             <Nav.Link as={Link} to="/about-us" className="me-4">About Us</Nav.Link>
                             <div style={{marginTop:'5px'}}>
 
-                                <Form className="d-flex mx-auto justify-content-center">
+                                <Form className=" d-flex mx-auto justify-content-center">
                                     <Form.Control
                                         type="search"
                                         placeholder="Search"
@@ -100,7 +100,7 @@ const CustomNavbar = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-        </div>
+        // </div>
     );
 };
 

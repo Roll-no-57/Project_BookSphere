@@ -5,8 +5,8 @@ import Button from 'react-bootstrap/Button'
 const MyorderCard = (props) => {
     const {id, date, book} = props;
     return (
-        <div style={{margin:'10px', width:'31%'}}>
-            <Card>
+        <div style={{margin:'10px', width:'31%'  }}>
+            <Card style={{backgroundColor:'#ffffe4'}}>
                 <Card.Body>
                     <h4> Your Order ID : {id}</h4>
                     <hr/>

@@ -1,0 +1,22 @@
+.quantity-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 3px;
+    padding: 0 5px; /* Decreased padding for smaller size */
+  }
+  
+  .quantity-input__modifier {
+    padding: .5rem; /* Decreased padding for smaller size */
+    font-size: 1rem; /* Decreased font size for smaller size */
+  }
+  
+  .quantity-input__screen {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 1rem; /* Decreased font size for smaller size */
+    border: none;
+    background: transparent;
+  }
+  

@@ -4,7 +4,8 @@ import { RiMoneyDollarCircleFill, RiArrowGoBackFill, RiTruckFill, RiHandCoinFill
 
 const Services = () => {
   return (
-    <Card bg="light" text="dark" style={{ padding: '20px', marginBottom: '50px' }}>
+
+    <Card text="dark" style={{ padding: '20px', marginBottom: '50px',backgroundColor:'#ffffe4' }}>
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: '30px' }}>
         <RiMoneyDollarCircleFill size={30} style={{ marginRight: '10px' }} />
         <Card.Text>Cash on Delivery</Card.Text>

@@ -24,6 +24,44 @@ router.get('/', async (req, res) => {
 });
 
 
+// GET all  categories of books
+// URL :api/v1/books/category
+router.get('/category', async (req, res) => {
+    try {
+        const booksResult = await DB_book.getBookCategory();
+        const resResult = {
+            category: booksResult,
+            categoryCount: booksResult.length,
+        }
+        res.status(200).json(resResult);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+//GET a particular category of books
+// URL : api/v1/books/category/:categoryName
+router.get('/category/:categoryName',async (req,res)=>{
+    try{
+        const booksResult = await DB_book.getBooksByCategory(req.params.categoryName);
+        const resResult = {
+            books: booksResult,
+            booksCount: booksResult.length,
+        }
+
+        res.status(200).json(resResult);
+
+    }
+    catch(error){
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
 // GET detail of a particular book
 // URL : /api/v1/books/:bookID
 router.get('/:bookID', async (req, res) => {

@@ -21,11 +21,11 @@ const CartCard = () => {
   const totalPrice = taka * 100 * count; // Assuming price is 100 and currency is taka
 
   return (
-    <Container className="m-3">
+    <Container className="m-3" >
       <Row>
         <Col>
           <Card>
-            <Card.Body>
+            <Card.Body style={{backgroundColor:'#ffffe4'}}>
               <Row>
                 <Col md={3}>
                   <Image src="/images/book1.jpg" fluid rounded style={{ height: '140px', width: '120px' }} />

@@ -11,7 +11,7 @@ function AuthorCard(props) {
     const path ="/"+ link +"/"+ ID; // Assuming you have a path property in the props
 
     return (
-        <Card style={{ padding: '20px', marginRight: '20px', marginTop: '10px' ,marginBottom:'10px' }}>
+        <Card style={{ padding: '20px', marginRight: '20px', marginTop: '10px' ,marginBottom:'10px',backgroundColor:'#ffffe4'  }}>
             <Container fluid className="text-center">
                 <div className='ring' style={{ border: '3px solid blue', borderRadius: '50%', display: 'inline-block', padding: '5px' }}>
                     <Image src={IMAGE} roundedCircle className="img-fluid" style={{ width: '140px', height: '135px' }} />

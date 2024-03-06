@@ -221,3 +221,16 @@ export async function getUser() {
   const j = await getX(`users/current`, {});
   return j;
 }
+
+
+
+// these fucntions are for category page 
+export async function getCategories() {
+  const j = await getX(`books/category`, {});
+  return j;
+}
+
+export async function getBooksByCategoryID(id) {
+  const j = await getX(`books/category/${id}`, {});
+  return j;
+}

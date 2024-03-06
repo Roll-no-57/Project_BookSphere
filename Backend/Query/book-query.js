@@ -18,6 +18,37 @@ async function getAllBooks() {
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+async function getBookCategory() {
+
+    const sql = `
+    SELECT DISTINCT genre
+    FROM book
+    `;
+    const binds = {
+
+    }
+    return (await database.execute(sql, binds, database.options)).rows;
+
+}
+
+
+async function getBooksByCategory(categoryName) {
+
+    const sql = `
+    SELECT 
+    book.*,author.name AS author_name
+    FROM book
+    JOIN author ON author.id = book.author_id
+    where genre = :categoryName
+    ORDER BY book.id
+    `
+    const binds = {
+        categoryName: categoryName
+    }
+
+    return (await database.execute(sql, binds, database.options)).rows;
+}
+
 
 async function getBookByID(ID) {
 
@@ -198,5 +229,7 @@ module.exports = {
     searchBooksCount,
     editBook,
     addBook,
-    getNewBooks
+    getNewBooks,
+    getBookCategory,
+    getBooksByCategory
 }
