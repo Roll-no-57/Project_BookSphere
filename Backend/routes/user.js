@@ -1,5 +1,5 @@
 const express = require('express');
-const DB_user = require('../Query/user-query');
+const DB_user = require('../Query/user-query');                   
 const router = express.Router();
 
 
@@ -64,6 +64,7 @@ router.get('/:userID', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const result = await DB_user.addUser(req.body);
+        
         res.status(200).json({message:"user added successfully",user_id:result});
     }
     catch (error) {

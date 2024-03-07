@@ -7,10 +7,13 @@ import Services from './services';
 import AuthorDetail from './AuthorDetail';
 import { FaStar } from 'react-icons/fa';
 import { getParam } from '../Pages/Utils';
-import { getBookByID, getReviewsByBookID, SendReview, getReviewsByBookIDofUser, UpdateReview,
-  getwishlistBybookIDandUserID,deleteBookFromWishlist,addBookToWishlist} from '../Pages/API';
+import {
+  getBookByID, getReviewsByBookID, SendReview, getReviewsByBookIDofUser, UpdateReview,
+  getwishlistBybookIDandUserID, deleteBookFromWishlist, addBookToWishlist, addBookToCart, getPickedBookByUser
+} from '../Pages/API';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 
 
 
@@ -78,16 +81,17 @@ const BookPage = () => {
     }
   }
 
+  {/* this section is for the add to wishlist functionality*/ }
   const [isAddedToWishlist, setIsAddedToWishlist] = React.useState(false);
 
-  const handleAddToWishlist =async () => {
-    if(isAddedToWishlist){
+  const handleAddToWishlist = async () => {
+    if (isAddedToWishlist) {
       console.log('Removing from wishlist');
       // Remove from wishlist
       await deleteBookFromWishlist(bookID);
       setIsAddedToWishlist(false);
     }
-    else{
+    else {
       console.log('Adding to wishlist');
       // Add to wishlist
       await addBookToWishlist(bookID);
@@ -113,11 +117,49 @@ const BookPage = () => {
   }
 
 
+  {/* this section is for the add to cart functionality*/ }
+  const [isAddedToCart, setIsAddedToCart] = React.useState(false);
+
+  const handleAddToCart = async () => {
+    console.log('Adding to cart');
+    if (isAddedToCart) {
+      setIsAddedToCart(false);
+    }
+    else {
+      await addBookToCart(bookID);
+      setIsAddedToCart(true);
+    }
+  };
+
+  const handleGoToCart = () => {
+    window.location.href = '/my-section/cart';
+  };
+
+
+  const fetchPickedBookByUser = async () => {
+    try {
+      const response = await getPickedBookByUser(bookID);
+      if (response.picked.length > 0) {
+        setIsAddedToCart(true);
+      }
+      else {
+        setIsAddedToCart(false);
+      }
+    }
+    catch (error) {
+      console.error('Error fetching reviews:', error);
+    }
+  }
+
+
+
+
   useEffect(() => {
     fetchBook();
     fetchReviews();
     fetchUserReview();
     fetchwishlistUser();
+    fetchPickedBookByUser();
   }, []);
 
 
@@ -152,6 +194,10 @@ const BookPage = () => {
 
   const [key, setKey] = useState('home');
 
+
+
+
+
   return (
     <div>
       <CustomNavbar />
@@ -166,21 +212,55 @@ const BookPage = () => {
             </Col>
 
             {/* Book details column */}
-            <Col style={{ padding: '30px' }} md={6} className="d-flex flex-column">
+            <Col style={{ padding: '20px' }} md={6} className="d-flex flex-column">
               <div className='book-details'>
                 <h2>{book.NAME}</h2>
-                <h3 style={{ marginTop: '40px' }}>by - <Link to={`/author/${book.AUTHOR_ID}`} style={{ textDecoration: 'none' }}>{book.AUTHOR_NAME} </Link></h3>
-                <p style={{ marginTop: '40px' }}>Category : <Link  to={`/category/${book.GENRE}`} style={{ textDecoration: 'none' }}>{book.GENRE} </Link></p>
-                <p style={{ marginTop: '40px' }}>Publisher : <Link to={`/publisher/${book.PUBLISHER_ID}`} style={{ textDecoration: 'none' }}>{book.PUBLISHER_NAME} </Link></p>
-                <h5 style={{ marginTop: '40px' }}>Price: {taka} {book.PRICE}</h5>
-                <div style={{ marginTop: '40px' }}>
+                <h4 style={{ marginTop: '35px' }}>by - <Link to={`/author/${book.AUTHOR_ID}`} style={{ textDecoration: 'none' }}>{book.AUTHOR_NAME} </Link></h4>
+                <p style={{ marginTop: '25px' }}>Category : <Link to={`/category/${book.GENRE}`} style={{ textDecoration: 'none' }}>{book.GENRE} </Link></p>
+                <p style={{ marginTop: '15px' }}>Publisher : <Link to={`/publisher/${book.PUBLISHER_ID}`} style={{ textDecoration: 'none' }}>{book.PUBLISHER_NAME} </Link></p>
+                <h5 style={{ marginTop: '15px' }}>Price: {taka} {book.PRICE}</h5>
+
+                {book.STOCK > 0 ?
+                  <div>
+                    <div style={{ marginTop: '15px', marginBottom: '10px' }}>
+                      <i class="bi bi-check-circle-fill" style={{ color: 'green', fontSize: '20px', marginRight: '10px' }}></i>
+                      In Stock {book.STOCK < 20 ? <span style={{ color: 'red' }}>(Only {book.STOCK} copies left)</span> : null}
+                    </div>
+                    <p style={{ marginLeft: '20px' }}>* স্টক আউট হওয়ার আগেই অর্ডার করুন</p>
+                  </div>
+                  :
+                  <div>
+                    <div style={{ marginTop: '15px', marginBottom: '10px' }}>
+                      <i class="bi bi-exclamation-triangle-fill" style={{ color: 'red', fontSize: '20px', marginRight: '10px' }}></i>
+                      <span style={{ color: 'red' }}>Out of Stock</span>
+                      <p style={{ marginLeft: '20px' }}>* বর্তমানে রকমারিতে এই বইটির মুদ্রিত কপি নেই। বইটি স্টকে এভেইলেবল হলে এসএমএস/ইমেইলের মাধ্যমে নোটিফিকেশন পেতে রিকুয়েস্ট ফর স্টক এ ক্লিক করুন।</p>
+                    </div>
+                  </div>
+
+                }
+
+                <div style={{ marginTop: '20px' }}>
 
 
-                  <Button variant="outline-warning" style={{ marginRight: '30px' }}>Add to Cart</Button>
+                  {
+                    isAddedToCart ?
+                      <Button variant="warning" style={{ marginRight: '30px' }} onClick={handleGoToCart}>
+                        Go to Cart
+                        <i className="bi bi-arrow-right" style={{ fontSize: '20px' ,marginLeft:'10px' }}></i>
+                      </Button>
+                      :
+                      <Button variant="warning" style={{ marginRight: '30px' }} onClick={handleAddToCart} >
+                        <i className="bi bi-bag-plus" style={{ fontSize: '20px', marginRight: '10px' }}></i>
+                        Add to Cart</Button>
+                  }
                   <Button
                     variant={isAddedToWishlist ? "danger" : "primary"}
                     onClick={handleAddToWishlist}
                   >
+                    {
+                      isAddedToWishlist ? <i className="bi bi-heartbreak" style={{ fontSize: '22px', marginRight: '10px' }}></i> : <i className="bi bi-heart" style={{ fontSize: '22px', marginRight: '5px' }}></i>
+                    }
+
                     {isAddedToWishlist ? "Remove from Wishlist" : "Add to Wishlist"}
                   </Button>
                 </div>

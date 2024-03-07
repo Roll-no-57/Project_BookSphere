@@ -1,5 +1,6 @@
 const express = require('express');
 const DB_user = require('../Query/user-query');
+const DB_cart = require('../Query/cart-query');  
 const router = express.Router();
 
 
@@ -8,14 +9,12 @@ const router = express.Router();
 router.post('/' , async (req,res)=>{
 
     try {
-        // You must check wheather the email is already registered or not
-        // You must check wheather it is a valid email or not 
-        console.log("request for reginstration");
-        console.log(req.body);
-
         const userResult = await DB_user.addUser(req.body);
+        const cart = await DB_cart.assignCartToUser(userResult);
+
+
         if(userResult!==0){
-            res.status(200).json({ message: "User registerd successfully",user_id : userResult });
+            res.status(200).json({ message: "User registerd successfully",user_id : userResult, cart_id : cart});
         }
         else{
             res.status(400).json({ message: "User not added"});

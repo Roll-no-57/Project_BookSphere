@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FaStar } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 
 const  MyreviewCard = (props) => {
     const { image, name, review, rating, date ,book_id} = props;
@@ -13,7 +14,10 @@ const  MyreviewCard = (props) => {
     return (
         <div>
             <Container fluid>
+                <Card  style={{ backgroundColor: '#ffffe4' ,marginBottom:'10px'}}>
+                    <Card.Body>
                 <Row>
+                    
                     <Col md={5} style={{ padding: '20px', width: '25%' }} className="3 d-flex flex-column">
                         <div className='book-image d-flex justify-content-center mt-2'>
                             <img src={image} alt='book' style={{ borderRadius: '10px', width: '150px' ,height:'220px'}} />
@@ -41,8 +45,10 @@ const  MyreviewCard = (props) => {
                             <Link to={`/book/${book_id}`} style={{ marginTop: '30px' }} className="btn btn-warning btn-sm mt-2">Edit Your Review</Link>
                         </div>
                     </Col>
-                    <hr/>
+                    
                 </Row>
+                    </Card.Body>
+                </Card>
                 
             </Container>
         </div>

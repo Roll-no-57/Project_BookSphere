@@ -4,6 +4,7 @@ import Pagination from 'react-bootstrap/Pagination';
 import './AllCard.css';
 
 const AllCard = (props) => {
+    
     const { product, link, component: CustomCard, headlines, headTitle, } = props;
 
     const [currentPage, setCurrentPage] = useState(1);

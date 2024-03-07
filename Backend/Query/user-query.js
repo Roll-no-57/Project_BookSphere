@@ -27,7 +27,7 @@ const getUserByID = async (id) => {
 }
 
 // get user by email ID 
-const getUserByEmail = async (email) =>{
+const getUserByEmail = async (email) => {
     const sql = `
         SELECT * FROM APP_USER WHERE EMAIL = :email
     `;
@@ -58,6 +58,7 @@ const addUser = async (user) => {
 
     return (await database.execute(sql, binds, database.options)).outBinds.insertedId[0];
 }
+
 
 // update a user
 const updateUser = async (userID, user) => {

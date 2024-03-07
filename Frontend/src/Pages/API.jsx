@@ -234,3 +234,30 @@ export async function getBooksByCategoryID(id) {
   const j = await getX(`books/category/${id}`, {});
   return j;
 }
+
+// these functions are used in cart page
+export async function getUserPickedBooks() {
+  const j = await getX(`cart/picked`, {});
+  return j;
+}
+
+export async function addBookToCart(bookID) {
+  const j = await postX(`cart/${bookID}`, {}, {});
+  return j;
+}
+
+export async function getPickedBookByUser(bookID) {
+  const j = await getX(`cart/${bookID}`);
+  return j;
+}
+
+export async function updateQty(pickedID, qty){
+  const j = await fetchX('PUT', `cart/${pickedID}`, {}, {amount: qty});
+  return j;
+}
+
+
+export async function deletePicked(pickedID) {
+  const j = await deleteX(`cart/${pickedID}`);
+  return j;
+}

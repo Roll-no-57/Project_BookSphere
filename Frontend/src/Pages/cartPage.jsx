@@ -1,47 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CartCard from '../Components/cartCard';
-import { Container, Row, Col } from 'react-bootstrap';
-import FloatWmargin from '../Components/FloatWmargin';
-import CustomNavbar from '../Components/Navbar';
-import Services from '../Components/services';
-import Footer from '../Components/Footer';
+
+
+import { getUserPickedBooks } from './API';
+
 
 const CartPage = (props) => {
 
+    const [books, setBooks] = React.useState([]);
+
+    const fetchBooks = async () => {
+        const response = await getUserPickedBooks();
+        setBooks(response.picked);
+    }
+
+    const  deleteBook=async ()=> {
+        fetchBooks();
+    }
+
+    useEffect(() => {
+        fetchBooks();
+    }, []);
+
+
+
     return (
         <div>
-            <CustomNavbar />
-            <Container>
-                <Row>
-                    <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+            {
+                books.map((book, index) => {
+                    return <CartCard product={book} key={index} deleteBook={deleteBook}/>
+                })
 
-                        <FloatWmargin >
-                            <h3 className="d-flex justify-content-center">My Cart</h3>
-                        </FloatWmargin>
+            }
+
+            {
+                books.length === 0 ?
+                    <h3>No books in cart</h3>
+                    :
+                    <div className="user-info d-flex justify-content-between">
+                        <h3>Proceed to checkout</h3>
+                        <a class="btn btn-danger ms-2" href="/my-section/checkoutPage">
+                            <i class="bi bi-pencil-square"></i>
+                            Place Order
+                        </a>
                     </div>
-                    <Col md={8} style={{ paddingTop: '10px' }}>
+            }
 
-                        <CartCard />
-                        <CartCard />
-                        <CartCard />
-                        <CartCard />
 
-                        <div className="user-info d-flex justify-content-between">
 
-                            <h3>Proceed to checkout</h3>
-                            <a class="btn btn-danger ms-2" href="/my-section/checkoutPage">
-                                <i class="bi bi-pencil-square"></i>
-                                Place Order
-                            </a>
-                        </div>
 
-                    </Col>
-                    <Col md={4} style={{ paddingTop: '20px' }}>
-                        <Services />
-                    </Col>
-                </Row>
-            </Container>
-            <Footer />
         </div>
     );
 };

@@ -1,5 +1,5 @@
 .custom-card {
-  width: 210px; /* Set the card width to 100% */
+  width: 208px; /* Set the card width to 100% */
   height: auto; /* Allow the card height to adjust based on content */
   margin-top: 10px;
   margin-bottom: 10px;
@@ -11,7 +11,7 @@
 .custom-card img {
   /* margin: 10px; */
   max-width: 100%; /* Limit the maximum width of the image */
-  max-height: 260px; /* Limit the maximum height of the image */
+  max-height: 230px; /* Limit the maximum height of the image */
 }
 
 .custom-card:hover {

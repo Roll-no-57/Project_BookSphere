@@ -22,6 +22,7 @@ const loginRouter = require('./routes/login');
 const authRouter = require('./middleware/auth');
 const regRouter = require('./routes/reg');
 const wishlistRouter = require('./routes/wishlist');
+const cartRouter = require('./routes/cart');
 
 
 
@@ -55,6 +56,7 @@ app.use('/api/v1/authors', authorRouter);
 app.use('/api/v1/publishers', publisherRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/wishlist', wishlistRouter);
+app.use('/api/v1/cart' , cartRouter);
 
 
 

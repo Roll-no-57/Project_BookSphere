@@ -2,46 +2,75 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { taka } from '../Pages/Constants';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { updateQty,deletePicked} from '../Pages/API'
 
-const CartCard = () => {
-  const [count, setCount] = useState(0);
 
-  const incrementCount = () => {
+const CartCard = (props) => {
+
+
+
+  const product = props.product;
+
+
+    {/* this section will handle the count logic */}
+
+  const [count, setCount] = useState(product.AMOUNT);
+
+  const incrementCount = async () => {
+    await updateQty(product.PICKED_ID, count+1 );
     setCount(count + 1);
   };
 
-  const decrementCount = () => {
+  const decrementCount =async () => {
     if (count > 0) {
+      await updateQty(product.PICKED_ID, count-1 );
       setCount(count - 1);
     }
   };
 
-  const totalPrice = taka * 100 * count; // Assuming price is 100 and currency is taka
+  const totalPrice = product.PRICE * count; // Assuming price is 100 and currency is taka
+
+
+  {/* this section will handle the delete logic */}
+  const handleDeleteBook = async () => {
+    await deletePicked(product.PICKED_ID );
+    props.deleteBook();
+  };
+
+
 
   return (
+
     <Container className="m-3" >
       <Row>
         <Col>
           <Card>
-            <Card.Body style={{backgroundColor:'#ffffe4'}}>
+
+            <Card.Body style={{ backgroundColor: '#ffffe4', width: '950px' }}>
+
               <Row>
+
                 <Col md={3}>
-                  <Image src="/images/book1.jpg" fluid rounded style={{ height: '140px', width: '120px' }} />
+                  <Image src={product.IMAGE} fluid rounded style={{ height: '200px', width: '140px' }} />
                 </Col>
+
                 <Col md={3}>
                   <div style={{ marginBottom: '20px' }}>
-                    <Link to="/book/1">Book Name</Link>
+                    <Link to={`/book/${product.ID}`} style={{ textDecoration: 'none' }}><h4>{product.NAME}</h4></Link>
                   </div>
-                  <p>Author Name</p>
-                  <p>Price: {taka}100</p>
-                  {/* Add heart icon for adding to wishlist */}
-                  <FontAwesomeIcon icon={faHeart} style={{ cursor: 'pointer', marginRight: '30px' ,color:'red' }} />
-                  {/* Replace button with delete icon */}
-                  <FontAwesomeIcon icon={faTrash} style={{ cursor: 'pointer' }} />
+                  <p>{product.AUTHOR_NAME}</p>
+                  <p>Price: TK. {product.PRICE}</p>
+
+
+                  <i class="bi bi-heart-pulse" style={{ fontSize: '25px', cursor: 'pointer', marginRight: '30px', color: 'red' }}></i>
+
+                  <i class="bi bi-trash" style={{ fontSize: '25px', cursor: 'pointer' }} onClick={handleDeleteBook} ></i>
+
                 </Col>
+
+
                 <Col md={3} style={{ marginTop: '30px' }}>
+
                   <div style={{ display: 'flex', alignItems: 'center' }}>
                     <Button variant="secondary" onClick={decrementCount} style={{ padding: '0.25rem 0.5rem', fontSize: '0.8rem' }}>
                       <i style={{ fontSize: '1rem' }}>-</i>
@@ -51,10 +80,15 @@ const CartCard = () => {
                       <i style={{ fontSize: '1rem' }}>&#43;</i>
                     </Button>
                   </div>
+
                 </Col>
+
+
                 <Col md={3} style={{ marginTop: '50px' }}>
                   <p>Total: {taka} {totalPrice}</p>
                 </Col>
+
+
               </Row>
             </Card.Body>
           </Card>
