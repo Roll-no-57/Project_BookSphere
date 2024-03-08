@@ -5,7 +5,7 @@ import CartCard from '../Components/cartCard';
 import { getUserPickedBooks } from './API';
 
 
-const CartPage = (props) => {
+const CartPage = () => {
 
     const [books, setBooks] = React.useState([]);
 

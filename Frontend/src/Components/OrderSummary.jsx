@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Form, Button, Row, Col } from 'react-bootstrap';
+import { getUserPickedBooks } from '../Pages/API';
 
 const OrderSummary = () => {
     const [voucher, setVoucher] = useState('');
@@ -9,16 +10,38 @@ const OrderSummary = () => {
 
     const [totalPayable, setTotalPayable] = useState(0);
     const [total, setTotal] = useState(0);
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => {
+        const fetchBooks = async () => {
+            const response = await getUserPickedBooks();
+            setBooks(response.picked);
+
+            let motTaka = 0;
+            response.picked.forEach((book) => {
+                motTaka += book.PRICE*book.AMOUNT;
+            });
+
+            setTotalPrice(motTaka);
+            setSubtotal(motTaka);
+            setShipping(50);
+            setTotal(motTaka + 50);
+            setTotalPayable(motTaka + 50);
+        };
+
+        fetchBooks();
+    }, []);
 
     const applyVoucher = () => {
-        // Logic to apply voucher and update prices
-        // This is just a placeholder
-        setTotalPrice(totalPrice - 10);
-        setVoucher('');
+        if(voucher!==''){
+            
+            setTotalPayable(totalPayable - 100);
+            setVoucher('');
+        }
     };
 
     return (
-        <Card style={{backgroundColor:'#ffffe4'}}>
+        <Card style={{ backgroundColor: '#ffffe4' }}>
             <Card.Body>
                 <h4>Checkout Summary</h4>
                 <hr />
@@ -67,7 +90,7 @@ const OrderSummary = () => {
                             />
                         </Form.Group>
                     </Col>
-                    <Col md={4} style={{marginTop:'32px'}}>
+                    <Col md={4} style={{ marginTop: '55px' }}>
                         <Button onClick={applyVoucher}>Apply</Button>
                     </Col>
                 </Row>
