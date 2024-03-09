@@ -32,6 +32,23 @@ router.get('/', async (req, res) => {
     }
 });
 
+// get searched authors
+// URL : /api/authors/search/:search
+router.get('/search/:search', async (req, res) => {
+    try {
+        const authorsResult = await DB_author.getSearchAuthors(req.params.search);
+        const resResult = {
+            authors: authorsResult,
+            authorsCount: authorsResult.length
+        }
+        res.status(200).json(resResult);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 // GET a particular author
 // URL : /api/authors/:authorID
 router.get('/:authorID', async (req, res) => {

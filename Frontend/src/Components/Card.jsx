@@ -9,12 +9,19 @@ function CustomCard(props) {
 
 
   return (
+
     <div className="card-container" >
       <Card className="custom-card" >
-        <span class="position-absolute top-0 start-30 translate-middle badge rounded-pill bg-success">
-          25% off
-          <span class="visually-hidden">unread messages</span>
-        </span>
+
+        {
+          props.DISCOUNT > 0 ?
+            <span class="position-absolute top-0 start-30 translate-middle badge rounded-pill bg-danger">
+              {props.DISCOUNT}% off
+              <span class="visually-hidden">unread messages</span>
+            </span>
+            :
+            null
+        }
         <Card.Img variant="top" src={props.IMAGE} />
         <Card.Body className="text-center" style={{ backgroundColor: '#ffffe4' }}>
           <Card.Subtitle style={{ marginBottom: '6px', fontWeight: 'bold' }}>{props.NAME}</Card.Subtitle>
@@ -22,34 +29,34 @@ function CustomCard(props) {
           <Card.Subtitle style={{ marginBottom: '6px' }}>TK. {props.PRICE}</Card.Subtitle>
 
           {
-            props.STOCK>0?
-            <div style={{display:'flex',justifyContent:'center'}}>
-              <i class="bi bi-check-circle-fill" style={{ color: 'green', fontSize: '15px', marginRight: '10px' }}></i>
-              <p style={{ marginBottom: '6px', color: 'green' }}>Product In Stock</p>
-            </div>
-            :
-            <div style={{display:'flex',justifyContent:'center'}}>
-            <i class="bi bi-exclamation-triangle-fill" style={{ color: 'red', fontSize: '15px', marginRight: '10px' }}></i>
-            <p style={{ marginBottom: '6px', color: 'red' }}>Out of Stock</p>
-          </div>
+            props.STOCK > 0 ?
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <i class="bi bi-check-circle-fill" style={{ color: 'green', fontSize: '15px', marginRight: '10px' }}></i>
+                <p style={{ marginBottom: '6px', color: 'green' }}>Product In Stock</p>
+              </div>
+              :
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <i class="bi bi-exclamation-triangle-fill" style={{ color: 'red', fontSize: '15px', marginRight: '10px' }}></i>
+                <p style={{ marginBottom: '6px', color: 'red' }}>Out of Stock</p>
+              </div>
           }
 
           <Link to={`/book/${props.ID}`} >
             <Button variant='outline-warning' style={{ marginRight: '10px' }}>
 
-              <i className='bi bi-eye' style={{fontSize:'16px'}}></i>
+              <i className='bi bi-eye' style={{ fontSize: '16px' }}></i>
             </Button>
           </Link>
 
 
           <Button variant='outline-danger' style={{ marginRight: '10px' }}>
-              <i className='bi bi-heart' style={{fontSize:'16px'}}></i>
-            
+            <i className='bi bi-heart' style={{ fontSize: '16px' }}></i>
+
           </Button>
 
           <Button variant='outline-success' >
-            
-              <i className='bi bi-bag-plus' style={{fontSize:'16px'}}></i>
+
+            <i className='bi bi-bag-plus' style={{ fontSize: '16px' }}></i>
 
           </Button>
 

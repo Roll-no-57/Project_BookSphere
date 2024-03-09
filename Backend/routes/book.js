@@ -23,6 +23,23 @@ router.get('/', async (req, res) => {
     }
 });
 
+// get search books by title
+// URL : /api/v1/books/search/:title
+router.get('/search/:title', async (req, res) => {
+    try {
+        const booksResult = await DB_book.getBooksByTitle(req.params.title);
+        const resResult = {
+            books: booksResult,
+            booksCount: booksResult.length,
+        }
+        res.status(200).json(resResult);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 
 // GET all  categories of books
 // URL :api/v1/books/category
@@ -32,6 +49,24 @@ router.get('/category', async (req, res) => {
         const resResult = {
             category: booksResult,
             categoryCount: booksResult.length,
+        }
+        res.status(200).json(resResult);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+// get all books of a particular category
+// URL : /api/v1/books/category/search/:categoryName
+router.get('/category/search/:categoryName', async (req, res) => {
+    try {
+        const categoryResult = await DB_book.getSearchCategory(req.params.categoryName);
+        const resResult = {
+            categories: categoryResult,
+            categoryCount: categoryResult.length,
         }
         res.status(200).json(resResult);
     }
@@ -117,6 +152,19 @@ router.get('/publisher/:publisherID', async (req, res) => {
     }
 });
 
+
+// insert a new book into the database
+// URL : /api/v1/books/
+router.post('/', async (req, res) => {
+    try {
+        const bookResult = await DB_book.addBook(req.body);
+        res.status(201).json({ message: "Book added successfully" });
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
 
 
 module.exports = router;

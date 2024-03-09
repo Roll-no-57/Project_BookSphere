@@ -18,6 +18,21 @@ async function getAllBooks() {
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+
+async function getSearchCategory(categoryName) {
+    const sql = `
+         SELECT DISTINCT GENRE
+         FROM BOOK 
+            WHERE LOWER(GENRE) LIKE '%'||LOWER(:categoryName)||'%'
+            ORDER BY GENRE
+    `;
+
+    const binds = {
+        categoryName: categoryName
+    }
+    return (await database.execute(sql, binds, database.options)).rows;
+}
+
 async function getBookCategory() {
 
     const sql = `
@@ -158,20 +173,25 @@ async function searchBooks(keyword, offset, limit) {
     }
     return (await database.execute(sql, binds, database.options)).rows;
 }
-async function searchBooksCount(keyword) {
+
+
+async function getBooksByTitle(title) {
     const sql = `
-        SELECT
-           COUNT(*) AS CNT
-        FROM BOOK B
-        JOIN AUTHOR A on B.AUTHOR_ID = A.ID
-        JOIN PUBLISHER P on B.PUBLISHER_ID = P.ID
-        WHERE (( LOWER(B.NAME) LIKE '%'||:keyword||'%') OR ( LOWER(A.NAME) LIKE '%'||:keyword||'%') OR ( LOWER(P.NAME) LIKE '%'||:keyword||'%'))
-    `;
+    
+        SELECT BOOK.* ,AUTHOR.NAME AS AUTHOR_NAME
+        FROM BOOK JOIN AUTHOR ON BOOK.AUTHOR_ID = AUTHOR.ID
+        WHERE LOWER(BOOK.NAME) LIKE '%'||LOWER(:title)||'%'
+        ORDER BY BOOK.NAME
+    `
     const binds = {
-        keyword: keyword
+        title: title
     }
     return (await database.execute(sql, binds, database.options)).rows;
 }
+
+
+
+
 
 async function editBook(id, image, page, year, price, edition, stock, genre) {
     const sql = `
@@ -193,13 +213,27 @@ async function editBook(id, image, page, year, price, edition, stock, genre) {
     return;
 }
 
-async function addBook(name, author_id, pub_id, image, language, isbn, page, year, price, edition, stock, genre) {
+async function addBook(bookInfo) {
+
     const sql = `
-        INSERT INTO book(author_id,publisher_id,publishing_year,price,language,image,name,isbn,page,edition,stock,genre)
-        VALUES(:author_id,:pub_id,:year,:price,:language,:image,:name,:isbn,:page,:edition,:stock,:genre)
+        INSERT INTO book(author_id,publisher_id,publishing_year,price,language,image,name,isbn,page,edition,stock,genre,summary)
+        VALUES(:author_id,:pub_id,:year,:price,:language,:image,:name,:isbn,:page,:edition,:stock,:genre,:summary)
     `;
+
     const binds = {
-        name, author_id, pub_id, image, language, isbn, page, year, price, edition, stock, genre
+        author_id: bookInfo.author_id,
+        pub_id: bookInfo.publisher_id,
+        year: bookInfo.publishing_year,
+        price: bookInfo.price,
+        language: bookInfo.language,
+        image: bookInfo.image,
+        name: bookInfo.name,
+        isbn: bookInfo.isbn,
+        page: bookInfo.page,
+        edition: bookInfo.edition,
+        stock: bookInfo.stock,
+        genre: bookInfo.genre,
+        summary: bookInfo.summary
     }
     await database.execute(sql, binds, database.options);
     return;
@@ -226,10 +260,12 @@ module.exports = {
     getBookByAuthorIDCount,
     getBooksByPublisherID,
     searchBooks,
-    searchBooksCount,
+
     editBook,
     addBook,
     getNewBooks,
     getBookCategory,
-    getBooksByCategory
+    getBooksByCategory,
+    getBooksByTitle,
+    getSearchCategory,
 }

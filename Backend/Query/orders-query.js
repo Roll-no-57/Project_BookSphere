@@ -4,14 +4,14 @@ const database = require('../db/db');
 // Get all orders
 async function getAllOrders() {
     const sql = `
-        SELECT * FROM orders 
+        SELECT * FROM BOOK_ORDER 
         ORDER BY CREATED_AT DESC
     `
     const binds ={
 
     }
 
-    return await database.execute(sql, binds, database.options);
+    return (await database.execute(sql, binds, database.options)).rows;
 }
 
 
@@ -42,8 +42,24 @@ async function addOrder(userID,cartID,  order) {
 
 }
 
+async function updateOrderState(orderID, state) {
+    const sql = `
+        UPDATE BOOK_ORDER
+        SET STATE = :state
+        WHERE ID = :orderID
+        
+    `;
+
+    const binds = {
+        orderID: orderID,
+        state: state,
+    }
+
+    return (await database.execute(sql, binds, database.options)).rowsAffected;
+}
 
 module.exports ={
     getAllOrders,
     addOrder,
+    updateOrderState,
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CustomNavbar from '../Components/Navbar';
 import Customcarousel from '../Components/Carousals';
 import MultiCarousel from '../Components/Multicarousel';
@@ -7,41 +7,36 @@ import CategoryCard from '../Components/CategoryCard';
 import AuthorCard from '../Components/AuthorCard';
 import Footer from '../Components/Footer';
 import BookPage from '../Components/BookPage';
-
+import { getBestSellerBook  ,getBestSellerAuthor ,getMostReviewed} from './API';
 
 const Home = () => {
 
-  const products = [
-    { ID: 1, NAME: 'Product 1', AUTHOR_ID: 'Apurbo Hossain', PRICE: '$10.00', IMAGE: '/images/defaultbook.jpg' },
-    { ID: 2, NAME: 'Product 2', AUTHOR_ID: 'Apurbo Hossain', PRICE: '$15.00', IMAGE: '/images/defaultbook.jpg' },
-    { ID: 3, NAME: 'Product 3', AUTHOR_ID: 'Apurbo Hossain', PRICE: '$20.00', IMAGE: '/images/defaultbook.jpg' },
-    { ID: 3, NAME: 'Product 3', AUTHOR_ID: 'Apurbo Hossain', PRICE: '$20.00', IMAGE: '/images/defaultbook.jpg' },
-    { ID: 3, NAME: 'Product 3', AUTHOR_ID: 'Apurbo Hossain', PRICE: '$20.00', IMAGE: '/images/defaultbook.jpg' },
-    { ID: 3, NAME: 'Product 3', AUTHOR_ID: 'Apurbo Hossain', PRICE: '$20.00', IMAGE: '/images/defaultbook.jpg' },
 
-    // Add more products as needed
-  ];
-  const CategoriesItems = [
-    { id: 1, name: 'Product 1', author: 'Apurbo Hossain', price: '$10.00', image: '/images/category.jpg' },
-    { id: 2, name: 'Product 2', author: 'Apurbo Hossain', price: '$15.00', image: '/images/category.jpg' },
-    { id: 3, name: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', image: '/images/category.jpg' },
-    { id: 3, name: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', image: '/images/category.jpg' },
-    { id: 3, name: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', image: '/images/category.jpg' },
-    { id: 3, name: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', image: '/images/category.jpg' },
+  const [bestSeller, setBestSeller] = React.useState([]);
+  const [bestSellerAuthor, setBestSellerAuthor] = React.useState([]);
+  const [mostReviewed, setMostReviewed] = React.useState([]);
 
-    // Add more products as needed
-  ];
+  const fetch = async () => {
+    const response = await getBestSellerBook();
+    setBestSeller(response.data);
 
-  const authors = [
-    { ID: 1, NAME: 'Product 1', author: 'Apurbo Hossain', price: '$10.00', IMAGE: '/images/defaultauthor.jpg' },
-    { ID: 2, NAME: 'Product 2', author: 'Apurbo Hossain', price: '$15.00', IMAGE: '/images/defaultauthor.jpg' },
-    { ID: 3, NAME: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', IMAGE: '/images/defaultauthor.jpg' },
-    { ID: 3, NAME: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', IMAGE: '/images/defaultauthor.jpg' },
-    { ID: 3, NAME: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', IMAGE: '/images/defaultauthor.jpg' },
-    { ID: 3, NAME: 'Product 3', author: 'Apurbo Hossain', price: '$20.00', IMAGE: '/images/defaultauthor.jpg' },
+    const responseAuthor  = await getBestSellerAuthor();
+    setBestSellerAuthor(responseAuthor.data);
 
-    // Add more products as needed
-  ];
+    const responseMostReviewed = await getMostReviewed();
+    setMostReviewed(responseMostReviewed.data);
+  }
+
+  useEffect(() => {
+    fetch();
+  }, []);
+
+
+
+
+
+
+
 
 
   return (
@@ -50,16 +45,15 @@ const Home = () => {
 
       <Customcarousel />
 
-      <MultiCarousel component={Card} products={products} headLines={"Best Sellers"}/>
+      <MultiCarousel component={Card} products={bestSeller} headLines={"Best Sellers"} />
 
+      <MultiCarousel component={AuthorCard} products={bestSellerAuthor} headLines={"Best Seller Authors"} link={'author'}/>
       
-      <MultiCarousel component={CategoryCard} products={CategoriesItems} headLines={"Categories"}/>
+      <MultiCarousel component={Card} products={mostReviewed} headLines={"Most Reviewed Books"} />
 
-      
-      <MultiCarousel component={Card} products={products} headLines={"Popular Products"}/>
+      {/* <MultiCarousel component={CategoryCard} products={CategoriesItems} headLines={"Categories"} /> */}
 
 
-      <MultiCarousel component={AuthorCard} products={authors} headLines={"Authors"}/>
       <Footer />
 
 

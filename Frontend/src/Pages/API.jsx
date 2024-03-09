@@ -287,3 +287,43 @@ export async function getValidVoucher(voucher) {
   const j = await getX(`voucher/${voucher}`, {});
   return j;
 }
+
+
+export async function getUserOrders() {
+  const j = await getX(`orders`, {});
+  return j;
+}
+
+
+
+export async function getSearchBooks(search) {
+  const j = await getX(`books/search/${search}`, {});
+  return j;
+}
+
+export async function getSearchAuthors(search) {
+  const j = await getX(`authors/search/${search}`, {});
+  return j;
+}
+
+
+export async function getSearchCategories(search) {
+  const j = await getX(`books/category/search/${search}`, {});
+  return j;
+}
+
+
+export async function getBestSellerBook() {
+  const j = await getX(`statistics/bestSellerBook`, {});
+  return j;
+}
+
+export async function getBestSellerAuthor() {
+  const j = await getX(`statistics/bestSellerAuthor`, {});
+  return j;
+}
+
+export async function getMostReviewed() {
+  const j = await getX(`statistics/mostReviewed`, {});
+  return j;
+}

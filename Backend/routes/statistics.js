@@ -51,7 +51,55 @@ router.get('/MonthlyOrder', async (req, res) => {
 router.get('/AllMonthlyIncomByYear', async (req, res) => {
     try {
         const result = await DB_statistic.getAllMonthlyIncomByYear();
-        res.status(200).json(result);
+        const ans ={
+            data :result ,
+            dataCount : result.length
+        }
+        res.status(200).json(ans);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
+router.get('/bestSellerBook', async (req, res) => {
+    try {
+        const result = await DB_statistic.getBestSellerBook();
+        const ans = {
+            data: result,
+            dataCount: result.length
+        }
+        res.status(200).json(ans);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
+// best seller author 
+router.get('/bestSellerAuthor', async (req, res) => {
+    try {
+        const result = await DB_statistic.getBestSellerAuthor();
+        const ans = {
+            data: result,
+            dataCount: result.length
+        }
+        res.status(200).json(ans);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
+// get most reviewed 
+router.get('/mostReviewed', async (req, res) => {
+    try {
+        const result = await DB_statistic.getMostReviewedBooksByMonth();
+        const ans = {
+            data: result,
+            dataCount: result.length
+        }
+        res.status(200).json(ans);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

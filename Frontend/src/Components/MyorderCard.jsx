@@ -3,20 +3,21 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 
 const MyorderCard = (props) => {
-    const {id, date, book} = props;
+
+    const {id, book} = props;
     return (
         <div style={{margin:'10px', width:'31%'  }}>
             <Card style={{backgroundColor:'#ffffe4'}}>
                 <Card.Body>
-                    <h4> Your Order ID : {id}</h4>
+                    <h4> Your Order ID : {book.ID}</h4>
                     <hr/>
-                    <Button style={{marginRight:'20px'}} variant="outline-primary" disabled>Processing</Button>
-                    <Button variant="outline-warning" >Track Order</Button>
+                    <Button style={{marginRight:'20px'}} variant="warning" disabled>{book.STATE}</Button>
+                    {/* <Button variant="outline-warning" >Track Order</Button> */}
                     <hr/>
-                    <h5>Order Date : {date}</h5>
+                    <h5>Order Date : {book.CREATED_AT}</h5>
                     <hr/>
-                    <h5>Price : {book.price}</h5>
-                    <h5>Items : 3</h5>
+                    <h5>Price : {book.TOTAL_PRICE}</h5>
+                    <h5>Items : {book.TOTAL_ITEM}</h5>
                 </Card.Body>
             </Card>
         </div>

@@ -15,6 +15,23 @@ const getAllAuthors = async () => {
 }
 
 
+// get searched authors
+const getSearchAuthors = async (search) => {
+
+    const sql = `
+
+        SELECT * FROM AUTHOR WHERE LOWER(NAME) LIKE '%'||LOWER(:search )||'%'
+
+    `;
+
+    const binds = {
+        search: search
+    };
+
+    return (await database.execute(sql, binds, database.options)).rows;
+}
+
+
 
 //Get all authors count
 const getAllAuthorsCount = async () => {
@@ -108,4 +125,5 @@ module.exports = {
     addAuthor,
     updateAuthor,
     deleteAuthor,
+    getSearchAuthors
 }

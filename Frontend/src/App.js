@@ -21,7 +21,9 @@ import MyCart from './Pages/MyCart';
 import Checkout from './Pages/CheckoutPage';
 import CategoryDetailPage from './Pages/CategoryDetailPage';
 import Aboutus from './Pages/About_us';
-// import Trackorders from './Pages/Trackorders';
+import SearchResults from './Pages/SearchResults';
+
+
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -67,8 +69,7 @@ function App() {
           {/* <Route path='/my-section/my-following' Component={following} /> */}
           <Route path='/my-section/cart' Component={MyCart}/>
           <Route path = '/my-section/checkoutPage' Component={Checkout}/>
-          {/* <Route path='/my-section/track-order' Component={Trackorders}/> */}
-
+          <Route path = '/search/:search' Component={SearchResults}/>
 
         </Routes>
       </BrowserRouter>
