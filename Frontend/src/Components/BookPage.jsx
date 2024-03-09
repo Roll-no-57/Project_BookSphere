@@ -240,19 +240,25 @@ const BookPage = () => {
                 }
 
                 <div style={{ marginTop: '20px' }}>
-
-
                   {
-                    isAddedToCart ?
-                      <Button variant="warning" style={{ marginRight: '30px' }} onClick={handleGoToCart}>
-                        Go to Cart
-                        <i className="bi bi-arrow-right" style={{ fontSize: '20px' ,marginLeft:'10px' }}></i>
-                      </Button>
+                    book.STOCK > 0 ?
+                      (isAddedToCart ?
+                        <Button variant="warning" style={{ marginRight: '30px' }} onClick={handleGoToCart}>
+                          Go to Cart
+                          <i className="bi bi-arrow-right" style={{ fontSize: '20px', marginLeft: '10px' }}></i>
+                        </Button>
+                        :
+                        <Button variant="warning" style={{ marginRight: '30px' }} onClick={handleAddToCart} >
+                          <i className="bi bi-bag-plus" style={{ fontSize: '20px', marginRight: '10px' }}></i>
+                          Add to Cart</Button>
+                      )
                       :
-                      <Button variant="warning" style={{ marginRight: '30px' }} onClick={handleAddToCart} >
+                      <Button variant="warning" style={{ marginRight: '30px' }} disabled>
                         <i className="bi bi-bag-plus" style={{ fontSize: '20px', marginRight: '10px' }}></i>
-                        Add to Cart</Button>
+                        Add to Cart
+                      </Button>
                   }
+
                   <Button
                     variant={isAddedToWishlist ? "danger" : "primary"}
                     onClick={handleAddToWishlist}
@@ -384,7 +390,7 @@ const BookPage = () => {
         }
       </div>
       <Footer />
-    </div>
+    </div >
   );
 };
 

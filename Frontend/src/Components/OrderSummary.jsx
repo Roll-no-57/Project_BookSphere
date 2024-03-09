@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Form, Button, Row, Col } from 'react-bootstrap';
-import { getUserPickedBooks } from '../Pages/API';
+import { getUserPickedBooks, getValidVoucher } from '../Pages/API';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const OrderSummary = () => {
+const OrderSummary = (props) => {
     const [voucher, setVoucher] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
     const [subtotal, setSubtotal] = useState(0);
@@ -12,6 +14,9 @@ const OrderSummary = () => {
     const [total, setTotal] = useState(0);
     const [books, setBooks] = useState([]);
 
+    const [isVoucherApplied, setIsVoucherApplied] = useState(false);
+
+
     useEffect(() => {
         const fetchBooks = async () => {
             const response = await getUserPickedBooks();
@@ -19,7 +24,7 @@ const OrderSummary = () => {
 
             let motTaka = 0;
             response.picked.forEach((book) => {
-                motTaka += book.PRICE*book.AMOUNT;
+                motTaka += book.PRICE * book.AMOUNT;
             });
 
             setTotalPrice(motTaka);
@@ -32,11 +37,42 @@ const OrderSummary = () => {
         fetchBooks();
     }, []);
 
-    const applyVoucher = () => {
-        if(voucher!==''){
-            
-            setTotalPayable(totalPayable - 100);
-            setVoucher('');
+    const applyVoucher = async () => {
+        if (voucher !== '') {
+
+            const response = await getValidVoucher(voucher);
+
+            if (response.length === 0) {
+                toast.error("Invalid Voucher");
+            }
+            else {
+
+                const validityDate = new Date(response[0].VALIDITY);
+
+                console.log("validity ");
+                console.log(validityDate);
+                console.log(new Date());
+                console.log(response[0].CAP, totalPayable, validityDate < new Date());
+
+                if (response[0].CAP > totalPayable || validityDate < new Date()) {
+                    toast.error("Voucher not applicable");
+                }
+                else {
+                    // if (!isVoucherApplied) {
+                        setTotalPayable(totalPayable - (subtotal * response[0].DISCOUNT / 100));
+                        setVoucher('');
+                        props.voucherApplied(response[0].ID);
+                        // setIsVoucherApplied(true);
+                        // toast.success("Voucher applied");
+                    // }
+                    // else {
+                    //     toast.error("You have already applied a voucher");
+                    // }
+                }
+            }
+        }
+        else {
+            toast.error("Please enter a voucher code");
         }
     };
 
@@ -94,6 +130,8 @@ const OrderSummary = () => {
                         <Button onClick={applyVoucher}>Apply</Button>
                     </Col>
                 </Row>
+                <ToastContainer position="top-right" autoClose={2000} />
+
             </Card.Body>
         </Card>
     );

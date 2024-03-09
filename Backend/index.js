@@ -24,6 +24,9 @@ const regRouter = require('./routes/reg');
 const wishlistRouter = require('./routes/wishlist');
 const cartRouter = require('./routes/cart');
 const voucherRouter = require('./routes/voucher');
+const orderRouter = require('./routes/orders');
+const statRouter = require('./routes/statistics');
+
 
 
 
@@ -59,6 +62,8 @@ app.use('/api/v1/users', userRouter);
 app.use('/api/v1/wishlist', wishlistRouter);
 app.use('/api/v1/cart' , cartRouter);
 app.use('/api/v1/voucher', voucherRouter);
+app.use('/api/v1/orders', orderRouter);
+app.use('/api/v1/statistics', statRouter);
 
 
 

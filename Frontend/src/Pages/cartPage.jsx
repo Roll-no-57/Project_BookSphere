@@ -27,6 +27,7 @@ const CartPage = () => {
     return (
         <div>
             {
+
                 books.map((book, index) => {
                     return <CartCard product={book} key={index} deleteBook={deleteBook}/>
                 })

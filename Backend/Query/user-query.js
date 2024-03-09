@@ -63,11 +63,12 @@ const addUser = async (user) => {
 // update a user
 const updateUser = async (userID, user) => {
     const sql = `
-    UPDATE APP_USER SET NAME = :name, PASSWORD = :password, EMAIL = :email, ADDRESS = :address, PHONE = :phone, DOB = TO_DATE(:dob, 'DD-MM-YYYY'), IMAGE = :image WHERE ID = :id
+    UPDATE APP_USER SET NAME = :name, EMAIL = :email, ADDRESS = :address, PHONE = :phone, DOB = TO_DATE(:dob, 'DD-MM-YYYY'), IMAGE = :image WHERE ID = :id
     `;
+    console.log("requested user is ");
+    console.log(user);
     const binds = {
         name: user.name,
-        password: user.password,
         email: user.email,
         address: user.address,
         phone: user.phone,

@@ -40,7 +40,6 @@ async function getAllCart() {
 }
 
 
-
 async function getCartByUserID(userID) {
     try {
         const sql = `
@@ -102,7 +101,7 @@ async function getAllPicked(cartID) {
             order by PICKED.CREATED_AT DESC
 
             `;
-            
+
         const binds = { cartID };
         const result = await database.execute(sql, binds, database.options);
         return result.rows;
@@ -143,7 +142,7 @@ async function updatePickedBook(pickedID, amount) {
 
 async function getPickedBookByBookID(bookID, cartID) {
     try {
-        const sql =` 
+        const sql = ` 
             SELECT * FROM PICKED WHERE BOOK_ID = :bookID AND CART_ID = :cartID
         `
         const binds = { bookID, cartID };

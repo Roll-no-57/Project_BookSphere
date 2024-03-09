@@ -261,3 +261,29 @@ export async function deletePicked(pickedID) {
   const j = await deleteX(`cart/${pickedID}`);
   return j;
 }
+
+
+// get all the users
+export async function getAllUsers() {
+  const j = await getX(`users`, {});
+  return j;
+}
+
+
+// update the user 
+export async function updateUser(user) {
+  const j = await fetchX('PUT', `users`, {}, user);
+  return j;
+}
+
+
+export async function ConfirmOrder(data) {
+  const j = await postX(`orders`, {}, data);
+  return j;
+}
+
+
+export async function getValidVoucher(voucher) {
+  const j = await getX(`voucher/${voucher}`, {});
+  return j;
+}

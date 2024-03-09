@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
 });
 
 
-// GET current cart by current user 
+// GET current cartID by current user 
 // URL : api/v1/cart/user
 router.get('/user', async (req, res) => {
     try {

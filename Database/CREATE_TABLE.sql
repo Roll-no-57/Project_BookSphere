@@ -103,7 +103,7 @@ create TABLE book_order (
 	phone1          VARCHAR2(20) not null,
 	phone2          VARCHAR2(20),
 	address         VARCHAR2(1000),
-	pick            NUMBER default 1 not null,
+	-- pick            NUMBER default 1 not null,
     total_price     NUMBER,
     total_item      NUMBER,
     state           VARCHAR2(50),
@@ -213,6 +213,12 @@ ADD cart_id NUMBER;
 ALTER TABLE picked
 ADD CONSTRAINT picked_cart_fk FOREIGN KEY (cart_id) REFERENCES cart (ID);
 
+
+ALTER TABLE BOOK_ORDER 
+    DROP COLUMN NAME
+
+ALTER TABLE BOOK_ORDER 
+    ADD book_id NUMBER
 
 
 

@@ -44,9 +44,9 @@ router.get('/current', async (req, res) => {
 
 // GET a particular user
 // URL : /api/users/:userID
-router.get('/:userID', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const userResult = await DB_user.getUserByID(req.params.userID);
+        const userResult = await DB_user.getUserByID(req.user.user.ID);
         const resResult = {
             user: userResult[0],
         }
@@ -76,9 +76,9 @@ router.post('/', async (req, res) => {
 
 // PUT a user
 // URL : /api/users/:userID
-router.put('/:userID', async (req, res) => {
+router.put('/', async (req, res) => {
     try {
-        const result = await DB_user.updateUser(req.params.userID,req.body);
+        const result = await DB_user.updateUser(req.user.user.ID,req.body);
         if(result !== 0)res.status(200).json({message:"user updated successfully"});
         else res.status(404).json({message:"user not found"});
     }

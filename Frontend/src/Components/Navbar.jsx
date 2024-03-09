@@ -9,6 +9,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useState, useEffect } from 'react';
 import { getUser } from '../Pages/API';
 
+
 import { RiShoppingCart2Line } from "react-icons/ri";
 
 const CustomNavbar = () => {
@@ -23,6 +24,8 @@ const CustomNavbar = () => {
             console.error('User fetch failed:', error);
         }
     }
+
+    
 
 
     useEffect(() => {
