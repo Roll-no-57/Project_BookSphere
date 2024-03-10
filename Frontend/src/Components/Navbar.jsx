@@ -73,7 +73,7 @@ const CustomNavbar = () => {
                         {/* <Nav.Link href="/author" className="me-4">About us</Nav.Link> */}
                         {/* <Nav.Link href="" className="me-4">Publisher</Nav.Link> */}
                         <Nav.Link as={Link} to="/publisher" className="me-4">Publishers</Nav.Link>
-                        <Nav.Link as={Link} to="/about-us" className="me-4">About Us</Nav.Link>
+                        {/* <Nav.Link as={Link} to="/about-us" className="me-4">About Us</Nav.Link> */}
                         <div style={{ marginTop: '5px' }}>
 
                             <Form className="d-flex mx-auto justify-content-center">

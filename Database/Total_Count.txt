@@ -1,0 +1,67 @@
+-- TOTAL INFO
+----------------------------------BASIC QUERIES = 47
+--INSERT = 10
+--UPDATE = 10
+--DELETE = 5
+--SELECT = 22
+----------------------------------ADVANCED QUERIES = 13
+--JOIN = 9
+--SUBQUERY = 4
+-----------------------------------PL/SQL = 12
+--FUNCTION = 2
+--PROCEDURE = 3
+--TRIGGER = 7
+
+
+----------   TOTAL QUERY USED FOR PROJECT = 72+   ---------------------
+
+
+
+SELECT 
+    book.*,
+    (SELECT name FROM author WHERE id = book.author_id) AS author_name
+FROM 
+    book
+WHERE 
+    book.author_id = 3861
+ORDER BY 
+    book.id
+
+
+SELECT 
+    book.*,
+    (SELECT name FROM author WHERE id = book.author_id) AS author_name
+FROM 
+    book
+WHERE 
+    genre = :categoryName
+ORDER BY 
+    book.id
+
+
+    SELECT 
+    book.*, 
+    (SELECT name FROM author WHERE id = book.author_id) AS author_name
+FROM 
+    book
+WHERE 
+    book.author_id = :id
+ORDER BY 
+    book.id;
+
+
+
+SELECT 
+    BOOK.*, 
+    (SELECT name FROM author WHERE id = book.author_id) AS author_name,
+    (SELECT description FROM author WHERE id = book.author_id) AS author_description,
+    (SELECT image FROM author WHERE id = book.author_id) AS author_image,
+    publisher.name AS publisher_name
+FROM 
+    book
+JOIN 
+    publisher ON publisher.id = book.publisher_id
+WHERE 
+    book.publisher_id = 1
+ORDER BY 
+    book.name;
