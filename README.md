@@ -5,7 +5,7 @@
 <br />
 <div align="center">
 
-![]([public/images/squirrel.png](https://ibb.co.com/Y4r2wtYh))
+![](https://ibb.co.com/Y4r2wtYh)
 
 <h2 align="center">BookSphere</h3>
   <h3 align="center">Go nuts for books </h3>
