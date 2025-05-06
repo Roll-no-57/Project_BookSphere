@@ -46,10 +46,6 @@ BookSphere is an oracle powered bootstrapped node Website. It is a faithful copy
 
 Youtube Demo: https://www.youtube.com/watch?v=xunh5thef3A&ab_channel=MosharafHossainApurbo
 
-## ERD
-
-![](https://raw.githubusercontent.com/TamimEhsan/SQuirreL/master/Assets/erd.png)
-
 
 
 ## Built With :heart: and
