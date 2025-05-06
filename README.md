@@ -5,8 +5,6 @@
 <br />
 <div align="center">
 
-![](https://ibb.co.com/Y4r2wtYh)
-
 <h2 align="center">BookSphere</h3>
   <h3 align="center">Go nuts for books </h3>
 </div>
@@ -46,7 +44,7 @@ BookSphere is an oracle powered bootstrapped node Website. It is a faithful copy
 
 Youtube Demo: https://www.youtube.com/watch?v=xunh5thef3A&ab_channel=MosharafHossainApurbo
 
-![Alt text](Screenshot 2025-05-06 151626.png)
+![Alt text](./Screenshot 2025-05-06 151626.png)
 
 
 
